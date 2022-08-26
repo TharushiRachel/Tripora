@@ -1,31 +1,43 @@
 import React from "react";
 import {
-  Image,
-  ImageBackground,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
+  StyleSheet,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import colors from "../config/colors";
 
-function WelcomeScreen({ navigation }) {
+function WelcomeScreen({ navigation, onPress }) {
   return (
     <ImageBackground
-      source={require("../assets/back2.jpg")}
-      resizeMode={"cover"}
       style={styles.background}
+      source={require("../assets/back6.jpg")}
+      resizeMode={"cover"}
     >
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/logo.png")} />
+      <View style={styles.topView1}>
+        <View style={styles.imgContainer}>
+          <Image style={styles.img} source={require("../assets/logo.png")} />
+          <View></View>
+        </View>
       </View>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors.primary }]}
-        onPress={() => navigation.navigate("SlideScreen1")}
-      >
-        <Text style={styles.text}>Get Started</Text>
-      </TouchableOpacity>
+      <View style={styles.topView2}>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.primary }]}
+          onPress={() => navigation.navigate("SlideScreen1")}
+        >
+          <Text style={styles.text}>Start Tour</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.topView3}>
+        <Text style={styles.title}>Already have account? </Text>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.subTitle}> Login Here</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 }
@@ -33,19 +45,18 @@ function WelcomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: "100%",
     height: "100%",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    width: "100%",
   },
-  logo: {
+  img: {
     width: 110,
     height: 140,
   },
-  logoContainer: {
+  imgContainer: {
     position: "absolute",
-    top: "30%",
     alignItems: "center",
+    top: "30%",
+    // bottom: "30%",
   },
   button: {
     backgroundColor: colors.primary,
@@ -57,11 +68,68 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     bottom: "8%",
   },
+
+  title: {
+    marginTop: 10,
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  subTitle: {
+    marginTop: 10,
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  buttonsContainer: {
+    width: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bottomContainer: {
+    width: "80%",
+    padding: 10,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    // borderColor: colors.primary,
+    borderColor: "transparent",
+    borderWidth: 3,
+    borderRadius: 25,
+  },
+  bottomText: {
+    color: colors.primary,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
   text: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 16,
     textTransform: "uppercase",
     fontWeight: "bold",
+  },
+  topView1: {
+    backgroundColor: "transparent",
+    height: "75%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topView2: {
+    backgroundColor: "transparent",
+    height: "10%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topView3: {
+    backgroundColor: "transparent",
+    height: "15%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
 });
 

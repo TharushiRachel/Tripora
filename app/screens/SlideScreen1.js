@@ -1,41 +1,78 @@
 import React from "react";
 import {
-  Image,
-  ImageBackground,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
+  StyleSheet,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import colors from "../config/colors";
-import SlideButton from "../components/SlideButton";
-import SkipText from "../components/SkipText";
-import SlideTitle from "../components/SlideTitle";
+import PrevSlideButton from "../components/PrevSlideButton";
+import NextSlideButton from "../components/NextSlideButton";
 
 const Dot = (props) => {
   let currentStyle = props.active ? styles.dotActive : styles.dotInactive;
   return <View style={[styles.dot, currentStyle]}></View>;
 };
 
-function SlideScreen1({ navigation }) {
+function SlideScreen1({ navigation, onPress }) {
   return (
+    // Background Image
     <ImageBackground
+      style={styles.background}
       source={require("../assets/back2.jpg")}
       resizeMode={"cover"}
-      style={styles.background}
     >
-      <View style={styles.logoContainer}>
-        <Image style={styles.logo} source={require("../assets/ss1.png")} />
+      {/* Screen image */}
+      <View style={styles.topView1}>
+        <View style={styles.imgContainer}>
+          <Image style={styles.img} source={require("../assets/sc1.png")} />
+          <View></View>
+        </View>
       </View>
-      <View style={styles.dotsContainer}>
-        <Dot active={true} />
-        <Dot />
-        <Dot />
-        <Dot />
+
+      {/* Text container */}
+      <View style={styles.topView2}>
+        <Text style={styles.title}>Plan Your Trips</Text>
+        <Text style={styles.subTitle}>
+          Discover new places and plan your schedules with the help of our smart
+          tools.
+        </Text>
       </View>
-      <SlideTitle title="Plan Your Trips" />
-      <SlideButton onPress={() => navigation.navigate("SlideScreen2")} />
-      <SkipText title="Skip" />
+
+      {/* Buttons and dots */}
+      <View style={styles.topView3}>
+        <View style={styles.View3left}>
+          <View style={styles.buttonsContainer}>
+            <PrevSlideButton
+              onPress={() => navigation.navigate("SlideScreen4")}
+            />
+          </View>
+        </View>
+        <View style={styles.view3middle}>
+          <View style={styles.dotsContainer}>
+            <Dot active={true} />
+            <Dot />
+            <Dot />
+            <Dot />
+          </View>
+        </View>
+        <View style={styles.view3right}>
+          <View style={styles.buttonsContainer}>
+            <NextSlideButton
+              onPress={() => navigation.navigate("SlideScreen2")}
+            />
+          </View>
+        </View>
+      </View>
+
+      {/* End button */}
+      <View style={styles.topView4}>
+        <TouchableOpacity style={styles.bottomContainer} onPress={onPress}>
+          <Text style={styles.bottomText}>Skip</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 }
@@ -43,25 +80,18 @@ function SlideScreen1({ navigation }) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    width: "100%",
     height: "100%",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    width: "100%",
   },
-  logo: {
-    width: 240,
-    height: 260,
+  img: {
+    width: 260,
+    height: 270,
   },
-  logoContainer: {
+  imgContainer: {
     position: "absolute",
-    top: "15%",
     alignItems: "center",
-  },
-  text: {
-    color: colors.white,
-    fontSize: 18,
-    textTransform: "uppercase",
-    fontWeight: "bold",
+    top: "30%",
+    // bottom: "30%",
   },
   dot: {
     width: 10,
@@ -72,13 +102,96 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   dotInactive: {
-    backgroundColor: "#D2D2D4",
+    backgroundColor: colors.gray,
   },
   dotsContainer: {
     width: 80,
     flexDirection: "row",
     justifyContent: "space-between",
-    bottom: "60%",
+  },
+  View3left: {
+    flex: 1,
+    // height: "10%",
+    width: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  view3middle: {
+    flex: 1,
+    // height: "10%",
+    width: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  view3right: {
+    flex: 1,
+    // height: "10%",
+    width: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  title: {
+    marginTop: 10,
+    color: colors.black,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  subTitle: {
+    marginTop: 10,
+    color: colors.black,
+    fontSize: 14,
+    paddingHorizontal: 20,
+    textAlign: "center",
+  },
+  buttonsContainer: {
+    width: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  bottomContainer: {
+    width: "80%",
+    padding: 10,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    // borderColor: colors.primary,
+    borderColor: "transparent",
+    borderWidth: 3,
+    borderRadius: 25,
+  },
+  bottomText: {
+    color: colors.primary,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  topView1: {
+    backgroundColor: "transparent",
+    height: "40%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topView2: {
+    backgroundColor: "transparent",
+    height: "30%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topView3: {
+    backgroundColor: "transparent",
+    height: "10%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  topView4: {
+    backgroundColor: "transparent",
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
