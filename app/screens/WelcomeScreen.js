@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     marginTop: 10,
-    color: colors.primary,
+    color: colors.white,
     fontSize: 16,
     fontWeight: "bold",
   },
