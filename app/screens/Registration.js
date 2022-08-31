@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Buttons from '../config/Buttons'
 
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation, onPress }) => {
 
     return (
     <ScrollView style={{flex:1,backgroundColor:'#fff',flexDirection:'column'}}>
@@ -68,7 +68,9 @@ const SignInScreen = () => {
                 <br/>
                 <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-end',backgroundColor:'#fff',marginBottom:40}} >
                 <Text style={{fontFamily:'OpenSans-Medium',fontSize:17,color:'#818181'}} >Already have a account? </Text>
+                <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("SingIn")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333'}} >Login</Text>
+                </TouchableOpacity>
             </View>
                       
         </View>

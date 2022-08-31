@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Buttons from '../config/Buttons'
 
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation, onPress }) => {
 
     return (
     <ScrollView style={{flex:1,backgroundColor:'#fff',flexDirection:'column'}}>
@@ -49,10 +49,12 @@ const SignInScreen = () => {
             <div>
             <View style={{flexDirection:'column',width:'95%'}} >
             <Text style={{fontFamily:"OpenSans-Bold",textAlign:'center',color:'#818181',fontSize:20}} >Or</Text>
+                    
                     <TouchableOpacity onPress={()=>console.log("google login")} style={styles.social_btn} >
                         <Image style={styles.social_img} source={require('../assets/google_icon.png')} />
                         <Text style={{width:'80%',textAlign:'center',fontSize:16,fontFamily:'OpenSans-Medium'}} >Sign in with Google </Text>
                     </TouchableOpacity>
+                    
 
                     <TouchableOpacity onPress={()=>console.log("facebook login")} style={styles.social_btn} >
                         <Image style={styles.social_img} source={require('../assets/facebook_icon.png')} />
@@ -65,7 +67,9 @@ const SignInScreen = () => {
             <div>
             <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-end',backgroundColor:'#fff',marginBottom:40}} >
                 <Text style={{fontFamily:'OpenSans-Medium',fontSize:17,color:'#818181'}} >Don't have a account? </Text>
+                <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Registration")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333'}} >Sign Up</Text>
+                </TouchableOpacity>
             </View> 
             </div>
                      
