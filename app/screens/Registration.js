@@ -64,7 +64,16 @@ const SignInScreen = ({ navigation, onPress }) => {
                 <br></br>
             </div>
 
+                {/* <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("FindAGuide")}>
                 <Buttons  btn_text={"Sign Up"}/>
+                </TouchableOpacity> */}
+
+                <View style={styles.topView4}>
+                    <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+                        <Text style={styles.bottomText}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+                
                 <br/>
                 <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-end',backgroundColor:'#fff',marginBottom:40}} >
                 <Text style={{fontFamily:'OpenSans-Medium',fontSize:17,color:'#818181'}} >Already have a account? </Text>
@@ -150,5 +159,20 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
+    },
+
+    topView4:{
+        justifyContent:'center',
+        width:'95%',
+        backgroundColor:'#009387',
+        height:50,
+        marginBottom:30,
+        borderRadius:10,
+        fontSize:15,
+        letterSpacing:1.5,
+        textAlign:'center',
+        position:'relative',
+        fontFamily:'OpenSans-SemiBold',
+        color:'#fff'
     }
   });

@@ -6,138 +6,116 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  TextInput,
+  Keyboard, 
+  Button 
 } from "react-native";
 import colors from "../config/colors";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from '@expo/vector-icons';
+import { Feather, Entypo } from "@expo/vector-icons"; 
 
-function Dashboard({ navigation }) {
-  return (
-    <>
-      <View style={styles.topView1}>
-        <ImageBackground
-          style={styles.background}
-          source={require("../assets/back8.jpg")}
-          resizeMode={"cover"}
-        ></ImageBackground>
+const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase, setCLicked }) =>{
+    
+    return (
+        <View style={styles.body}>
+
+    <View style={styles.container}>
+      <View
+        style={
+          clicked
+            ? styles.searchBar__clicked
+            : styles.searchBar__unclicked
+        }
+      >
+        {/* search Icon */}
+        <Feather
+          name="search"
+          size={20}
+          color="black"
+          style={{ marginLeft: 5 }}
+        />
+        {/* Input field */}
+        <TextInput
+          style={styles.input}
+          placeholder="Where are you going?"
+          value={searchPhrase}
+          onChangeText={setSearchPhrase}
+          onFocus={() => {
+            setClicked(true);
+          }}
+        />
+        {/* cross Icon, depending on whether the search bar is clicked or not */}
+        {clicked && (
+          <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
+              setSearchPhrase("")
+          }}/>
+        )}
       </View>
-
-      <View style={styles.topView2}>
-        <View style={styles.boxContainer}>
-          <View style={styles.box}>
-            <TouchableOpacity
-              style={styles.inner1}
-              onPress={() => navigation.navigate("Dashboard")}
-            >
-              <MaterialIcons name="date-range" size={44} color={colors.white} />
-              <Text style={styles.title}>Create Schedule</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.box}>
-            <TouchableOpacity
-              style={styles.inner2}
-              onPress={() => navigation.navigate("Dashboard")}
-            >
-              <MaterialIcons name="schedule" size={44} color={colors.white} />
-              <Text style={styles.title}>Check Best Time to Visit</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.box}>
-            <TouchableOpacity
-              style={styles.inner3}
-              onPress={() => navigation.navigate("Dashboard")}
-            >
-              <MaterialIcons
-                name="people-outline"
-                size={44}
-                color={colors.white}
-              />
-              <Text style={styles.title}>Find a Tour Guide</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.box}>
-            <TouchableOpacity
-              style={styles.inner4}
-              onPress={() => navigation.navigate("Dashboard")}
-            >
-              <MaterialIcons name="list-alt" size={44} color={colors.white} />
-              <Text style={styles.title}>Check News Alerts</Text>
-            </TouchableOpacity>
-          </View>
+      {/* cancel button, depending on whether the search bar is clicked or not */}
+      {clicked && (
+        <View>
+          <Button
+            title="Cancel"
+            onPress={() => {
+              Keyboard.dismiss();
+              setClicked(false);
+            }}
+          ></Button>
         </View>
-      </View>
-    </>
-  );
-}
+      )}
+    </View>
 
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    height: "100%",
-    width: "100%",
-  },
 
-  topView1: {
-    height: "52%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  topView2: {
-    height: "48%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  boxContainer: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: colors.white,
-    padding: 15,
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  box: {
-    width: "50%",
-    height: "50%",
-    padding: 15,
-  },
-  inner1: {
-    flex: 1,
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-  inner2: {
-    flex: 1,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-  inner3: {
-    flex: 1,
-    backgroundColor: "purple",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-  inner4: {
-    flex: 1,
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-  title: {
-    marginTop: 5,
-    color: colors.white,
-    fontSize: 16,
-    // fontWeight: "bold",
-    paddingHorizontal: 20,
-    textAlign: "center",
-  },
-});
+    
+    </View>
+    );
+  }
+  
+  const styles = StyleSheet.create({
 
-export default Dashboard;
+    body : {
+        backgroundColor:'#FAF9F6',
+        // alignItems:'center',
+        // justifyContent:'center',
+        flex:1
+    },
+
+    container: {
+        margin: 15,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        width: "90%",
+    
+      },
+      searchBar__unclicked: {
+        padding: 10,
+        flexDirection: "row",
+        width: "95%",
+        backgroundColor: "white",
+        borderRadius: 15,
+        alignItems: "center",
+        borderColor:colors.primary
+      },
+      searchBar__clicked: {
+        padding: 10,
+        flexDirection: "row",
+        width: "80%",
+        backgroundColor: "#d9dbda",
+        borderRadius: 15,
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        borderColor:colors.primary
+      },
+      input: {
+        fontSize: 20,
+        marginLeft: 10,
+        width: "90%",
+        color:"black",
+        alignItems: "center",
+      },
+
+
+  });
+  
+  export default Dashboard;

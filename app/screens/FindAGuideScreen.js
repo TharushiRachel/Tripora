@@ -12,7 +12,7 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from "../config/colors";
 import guide1 from '../assets/guide1.png';
 
-function FindAGuideScreen(onPress){
+function FindAGuideScreen(navigation, onPress){
 
     const [Items, setItems] = useState([
         {id: 1, name: 'Sujeewa de Silva', description: 'My main aim in tour guiding is to let the guests have..'},
