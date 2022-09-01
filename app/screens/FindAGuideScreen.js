@@ -35,8 +35,10 @@ function FindAGuideScreen(navigation, onPress){
             {
                 Items.map((guide)=>{
                     return(
+                        <TouchableOpacity onPress={() => navigation.navigate("TourGuide")}>
                         <View style={styles.item} key={guide.id}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            
                                 <View>
                                     <Image source={guide1} style={styles.guide_img} />
                                 </View>
@@ -44,8 +46,10 @@ function FindAGuideScreen(navigation, onPress){
                                     <Text style={styles.text}>{guide.name}</Text>
                                     <Text style={styles.text2}>{guide.description}</Text>
                                 </View>
+                                
                             </View>
                         </View>
+                        </TouchableOpacity>
                     )
                 })
             }

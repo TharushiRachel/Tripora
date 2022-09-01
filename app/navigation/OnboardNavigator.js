@@ -12,8 +12,10 @@ import SlideScreen3 from "../screens/SlideScreen3";
 import SlideScreen4 from "../screens/SlideScreen4";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
-// import Dashboard from "../screens/Dashboard";
-// import FindAGuide from "../screens/FindAGuideScreen"
+import Dashboard from "../screens/Dashboard";
+import FindAGuide from "../screens/FindAGuideScreen";
+import TourGuide from "../screens/TourGuideScreen";
+import TripScedule from "../screens/TripScedule";
 
 const config = {
   animation: "spring",
@@ -44,7 +46,10 @@ const OnboardNavigator = () => (
     <Stack.Screen name="SlideScreen4" component={SlideScreen4} />
     <Stack.Screen name="SingIn" component={SingIn} />
     <Stack.Screen name="Registration" component={Registration} />
-    {/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
+    <Stack.Screen name="Dashboard" component={Dashboard} />
+    <Stack.Screen name="FindAGuide" component={FindAGuide} />
+    <Stack.Screen name="TourGuide" component={TourGuide} />
+    <Stack.Screen name="TripScedule" component={TripScedule} />
 
   </Stack.Navigator>
 );
