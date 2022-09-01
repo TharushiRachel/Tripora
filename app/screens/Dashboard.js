@@ -10,7 +10,7 @@ import {
 import colors from "../config/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function Dashboard(props) {
+function Dashboard({ navigation }) {
   return (
     <>
       <View style={styles.topView1}>
@@ -24,21 +24,30 @@ function Dashboard(props) {
       <View style={styles.topView2}>
         <View style={styles.boxContainer}>
           <View style={styles.box}>
-            <TouchableOpacity style={styles.inner1}>
+            <TouchableOpacity
+              style={styles.inner1}
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <MaterialIcons name="date-range" size={44} color={colors.white} />
               <Text style={styles.title}>Create Schedule</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.box}>
-            <TouchableOpacity style={styles.inner2}>
+            <TouchableOpacity
+              style={styles.inner2}
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <MaterialIcons name="schedule" size={44} color={colors.white} />
               <Text style={styles.title}>Check Best Time to Visit</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.box}>
-            <TouchableOpacity style={styles.inner3}>
+            <TouchableOpacity
+              style={styles.inner3}
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <MaterialIcons
                 name="people-outline"
                 size={44}
@@ -49,7 +58,10 @@ function Dashboard(props) {
           </View>
 
           <View style={styles.box}>
-            <TouchableOpacity style={styles.inner4}>
+            <TouchableOpacity
+              style={styles.inner4}
+              onPress={() => navigation.navigate("Dashboard")}
+            >
               <MaterialIcons name="list-alt" size={44} color={colors.white} />
               <Text style={styles.title}>Check News Alerts</Text>
             </TouchableOpacity>

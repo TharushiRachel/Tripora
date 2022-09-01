@@ -1,8 +1,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
-import Dashboard from "../screens/Dashboard";
 import colors from "../config/colors";
+
+import DashboardNavigator from "../navigation/DashboardNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const BottomNavigator = () => (
   >
     <Tab.Screen
       name="Home"
-      component={Dashboard}
+      component={DashboardNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <AntDesign name="home" color={color} size={size} />
@@ -36,7 +37,7 @@ const BottomNavigator = () => (
     />
     <Tab.Screen
       name="Explore"
-      component={Dashboard}
+      component={DashboardNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <AntDesign name="search1" color={color} size={size} />
@@ -45,7 +46,7 @@ const BottomNavigator = () => (
     />
     <Tab.Screen
       name="Plan"
-      component={Dashboard}
+      component={DashboardNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <AntDesign name="hearto" color={color} size={size} />
@@ -55,7 +56,7 @@ const BottomNavigator = () => (
 
     <Tab.Screen
       name="Profile"
-      component={Dashboard}
+      component={DashboardNavigator}
       options={{
         tabBarIcon: ({ color, size }) => (
           <AntDesign name="user" color={color} size={size} />
