@@ -15,12 +15,14 @@ import {
 import colors from "../config/colors";
 import { AntDesign } from '@expo/vector-icons';
 import { Feather, Entypo } from "@expo/vector-icons"; 
-import negombo from '../assets/negombo.png';
-import sigiriya from '../assets/sigiriya.png';
-import templeOfTooth from '../assets/templeOfTooth.png';
+import sigiriya from '../assets/dsigiriya.png';
+import templeOfTooth from '../assets/dtempleOfTooth.png';
+import fishing from '../assets/fishing.png';
 import nineArch from '../assets/nineArch.png';
-import yala from '../assets/yala.png';
+import painting from '../assets/sigiriyaPaintings.png';
+import elephants from '../assets/elephants.png';
 import mirissa from '../assets/mirissa.png';
+import waterfall from '../assets/waterfall.png';
 import { MaterialIcons } from "@expo/vector-icons";
 
 const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase, setCLicked }) =>{
@@ -75,10 +77,17 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
     </View>
 
 
-    <ScrollView>
-            <View style={styles.item}>
-                <Image source={negombo} style={styles.negombo_img} />
-                {/* <Image source={sigiriya} style={styles.negombo_img} /> */}
+    <ScrollView horizontal>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Image source={sigiriya} style={styles.negombo_img} />
+                
+                <Image source={templeOfTooth} style={styles.negombo_img} />
+                <Image source={fishing} style={styles.negombo_img} />
+                <Image source={nineArch} style={styles.negombo_img} />
+                <Image source={waterfall} style={styles.negombo_img} />
+                <Image source={painting} style={styles.negombo_img} />
+                <Image source={elephants} style={styles.negombo_img} />
+                <Image source={mirissa} style={styles.negombo_img} />
             </View>
     </ScrollView>
 
@@ -171,11 +180,12 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
         borderColor:colors.primary
       },
       input: {
-        fontSize: 20,
-        marginLeft: 10,
+        fontSize: 16,
+        marginLeft: 30,
         width: "90%",
-        color:"black",
+        color:"gray",
         alignItems: "center",
+        justifyContent:'center'
       },
 
       negombo_img:{
