@@ -16,6 +16,7 @@ import Dashboard from "../screens/Dashboard";
 import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
 import TripScedule from "../screens/TripScedule";
+import NewsAlerts from "../screens/NewsAlerts";
 
 const config = {
   animation: "spring",
@@ -50,6 +51,7 @@ const OnboardNavigator = () => (
     <Stack.Screen name="FindAGuide" component={FindAGuide} />
     <Stack.Screen name="TourGuide" component={TourGuide} />
     <Stack.Screen name="TripScedule" component={TripScedule} />
+    <Stack.Screen name="NewsAlerts" component={NewsAlerts} />
 
   </Stack.Navigator>
 );
