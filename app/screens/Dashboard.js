@@ -107,7 +107,7 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner3}
-              onPress={() => navigation.navigate("FindAGuide")}
+              onPress={() => navigation.navigate("TourGuide")}
             >
               <MaterialIcons
                 name="people-outline"

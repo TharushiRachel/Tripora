@@ -19,13 +19,15 @@ import yala from '../assets/yala.png';
 import mirissa from '../assets/mirissa.png';
 
 
-function TripSchedule(){
+const TripSchedule =({navigation, onPress})=>{
 
     return(
         <View style={styles.body}>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <AntDesign name="left" size={20} style={styles.back_btn} />
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+            <AntDesign name="left" size={20} style={styles.back_btn}/>
+                </TouchableOpacity>
                 <Text style={styles.text1}>Let's plan your trip!</Text>
             </View>
 

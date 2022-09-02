@@ -10,27 +10,32 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import guide2 from '../assets/guide2.png'; 
+import tourguide from '../assets/tourguide.png'; 
+import PrevSlideButton from "../components/PrevSlideButton";
 
 
 const IMAGENAME = require("../assets/guide2.png"); 
 
-function TourGuideScreen(props){
+const TourGuideScreen = ({navigation, onPress}) =>{
 
-    const { onPress, title = 'Save' } = props;
+    // const { onPress, title = 'Save' } = props;
 
     return(
         <View style={styles.body}>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <AntDesign name="left" size={20} style={styles.back_btn} />
+            
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+            <AntDesign name="left" size={20} style={styles.back_btn}/>
+                </TouchableOpacity>
                 <Text style={styles.text1}>Tour Guide</Text>
+                
             </View>
 
-            
+            <Text style={styles.text6}>Recomended for you</Text><br></br>
 
             <View style={styles.box1}>
-                <Image source={guide2} style={styles.guide_img} />
+                <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>Sujeewa de Silva</Text>
             </View>
 
@@ -137,9 +142,16 @@ const styles = StyleSheet.create({
     },
 
     guide_img:{
-        width: 110, 
-        height: 110,
+        width: 150, 
+        height: 150,
 
+    },
+
+    text6:{
+        fontSize:16,
+        fontWeight:400,
+        color:'#696969',
+        marginLeft:20
     },
 
    
