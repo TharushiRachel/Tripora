@@ -12,9 +12,14 @@ import {
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
 import landslide from '../assets/landslide.png';
-import sigiriya from '../assets/sigiriya.png'
+// import sigiriya from '../assets/sigiriya.png'
 import flood from '../assets/flood.png';
 import storm from '../assets/storm.png';
+import News from '../assets/protest.png';
+import cricket from '../assets/cricket.png';
+
+import sigiriya from '../assets/dsigiriya.png';
+import nineArch from '../assets/nineArch.png';
 
 const NewsAlerts =({navigation, onPress})=>{
 
@@ -25,21 +30,23 @@ const NewsAlerts =({navigation, onPress})=>{
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
-                <Text style={styles.text1}>Alert!!</Text>
+                <Text style={styles.text1}>Alerts!!</Text>
             </View>
 
-            <Text style={styles.text2}>Recomended for you</Text>
+            <Text style={styles.text2}>News Notifications</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}></View>
 
             <ScrollView>
             <View style={styles.item}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View>
-                        <Image source={landslide} style={styles.negombo_img} />
+                        <Image source={nineArch} style={styles.negombo_img} />
                     </View>
 
                     <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Landslide</Text>
-                        <Text style={styles.negombo_text2} >Negombo, Sri Lanka</Text>
+                        <Text style={styles.negombo_text}>Main railway line operations delayed due to technical issue</Text>
+                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
+                        <Text style={styles.negombo_text2} >9/02/2022</Text>
                     </View>    
                 </View>
             </View>
@@ -47,12 +54,13 @@ const NewsAlerts =({navigation, onPress})=>{
             <View style={styles.item}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View>
-                    <Image source={flood} style={styles.negombo_img} />
+                    <Image source={News} style={styles.negombo_img} />
                     </View>
 
                     <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Flood</Text>
-                        <Text style={styles.negombo_text2} >Negombo, Sri Lanka</Text>
+                        <Text style={styles.negombo_text}>Protestors at Armour St. construct makeshift tent opposite Police station</Text>
+                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
+                        <Text style={styles.negombo_text2} >9/02/2022</Text>
                     </View>    
                 </View>
             </View>
@@ -60,12 +68,13 @@ const NewsAlerts =({navigation, onPress})=>{
             <View style={styles.item}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View>
-                    <Image source={storm} style={styles.negombo_img} />
+                    <Image source={cricket} style={styles.negombo_img} />
                     </View>
 
                     <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Storm</Text>
-                        <Text style={styles.negombo_text2} >Negombo, Sri Lanka</Text>
+                        <Text style={styles.negombo_text}>Big Match is going to held St.Peters' on Ella Ground Today</Text>
+                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
+                        <Text style={styles.negombo_text2} >9/02/2022</Text>
                     </View>    
                 </View>
             </View>
@@ -78,7 +87,7 @@ const NewsAlerts =({navigation, onPress})=>{
 
                     <View style={styles.text_view}>
                         <Text style={styles.negombo_text}>Negombo</Text>
-                        <Text style={styles.negombo_text2} >Negombo, Sri Lanka</Text>
+                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
                     </View>    
                 </View>
             </View>
