@@ -1,135 +1,57 @@
-import React, {useState} from "react";
-import {
-    StyleSheet,
-    View,
-    Text,
-    Button,
-    TouchableOpacity,
-    Image,
-    Pressable,
-    ScrollView
-} from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
+import React from "react";
+import {View,StyleSheet,Text,Pressable,Image} from "react-native";
+import moment from "moment";
+import * as WebBrowser from 'expo-web-browser';
 import colors from "../config/colors";
-import landslide from '../assets/landslide.png';
-// import sigiriya from '../assets/sigiriya.png'
-import flood from '../assets/flood.png';
-import storm from '../assets/storm.png';
-import News from '../assets/protest.png';
-import cricket from '../assets/cricket.png';
 
-import sigiriya from '../assets/dsigiriya.png';
-import nineArch from '../assets/nineArch.png';
+const Article = (props) => {
 
-const NewsAlerts =({navigation, onPress})=>{
+    const goToSource = () =>{
+        WebBrowser.openBrowserAsync(props.url);
+    }
 
     return(
-        <View style={styles.body}>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
-            <AntDesign name="left" size={20} style={styles.back_btn}/>
-                </TouchableOpacity>
-                <Text style={styles.text1}>Alerts!!</Text>
+        
+        <Pressable style={styles.container} onPress={goToSource}>
+            
+            {/* image */}
+            <View>
+            <Image source={{
+                uri: props.urlToImage
+            }}
+            style={styles.image}
+            />
             </View>
 
-            <Text style={styles.text2}>News Notifications</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}></View>
+            <View style={styles.text_view}>
 
-            <ScrollView>
-            <View style={styles.item}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View>
-                        <Image source={nineArch} style={styles.negombo_img} />
-                    </View>
 
-                    <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Main railway line operations delayed due to technical issue</Text>
-                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
-                        <Text style={styles.negombo_text2} >9/02/2022</Text>
-                    </View>    
-                </View>
+        {/*    title */}
+            <Text style={styles.title}>{props.title}</Text>
+
+        {/*    description */}
+            <Text style={styles.description} numberOfLines={3}>
+                {props.description}
+            </Text>
+
+            <View style={styles.data}>
+                {/* <Text style={styles.heading}>by: <Text style={styles.author}>{props.author}</Text></Text> */}
+                <Text style={styles.date}>{moment(props.publishedAt).format("MMM Do YY") }</Text>
             </View>
 
-            <View style={styles.item}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View>
-                    <Image source={News} style={styles.negombo_img} />
-                    </View>
-
-                    <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Protestors at Armour St. construct makeshift tent opposite Police station</Text>
-                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
-                        <Text style={styles.negombo_text2} >9/02/2022</Text>
-                    </View>    
-                </View>
+        {/*     source */}
+            <View style={{marginTop: 10}}>
+                <Text style={styles.date}>source: <Text style={styles.source}>{props.sourceName}</Text></Text>
             </View>
-
-            <View style={styles.item}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View>
-                    <Image source={cricket} style={styles.negombo_img} />
-                    </View>
-
-                    <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Big Match is going to held St.Peters' on Ella Ground Today</Text>
-                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
-                        <Text style={styles.negombo_text2} >9/02/2022</Text>
-                    </View>    
-                </View>
             </View>
-
-            <View style={styles.item}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View>
-                    <Image source={sigiriya} style={styles.negombo_img} />
-                    </View>
-
-                    <View style={styles.text_view}>
-                        <Text style={styles.negombo_text}>Negombo</Text>
-                        <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
-                    </View>    
-                </View>
-            </View>
-
-
-            </ScrollView>
-
-        </View>
+        </Pressable>
     )
 }
 
+export default Article;
+
 const styles = StyleSheet.create({
-    body : {
-        backgroundColor:'#FAF9F6',
-        // alignItems:'center',
-        // justifyContent:'center',
-        flex:1
-    },
-
-    text1: {
-        color: '#000000',
-        fontWeight:800,
-        marginRight:230,
-        marginTop:35,
-        fontSize:18,
-        marginBottom:40
-    },
-
-    back_btn: {
-        marginLeft:30,
-        marginTop:37,
-        color:colors.primary,
-    },
-
-    text2:{
-        fontSize:16,
-        fontWeight:400,
-        color:'#696969',
-        marginLeft:20
-    },
-
-    item:{
+    container:{
         backgroundColor: 'white',
         justifyContent:'center',
         alignItems:'center',
@@ -142,37 +64,50 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 3, 
     },
-
-    negombo_img:{
-        width: 110, 
+    image:{
         height: 100,
-        // borderRadius:100
+        width: 200,
+        // borderTopLeftRadius: 40,
+        // borderTopRightRadius: 40
     },
-
-    negombo_text:{
+    title:{
         marginTop:0,
         fontSize:20,
         fontWeight:600,
         color:colors.primary,
         marginLeft:10
     },
-
-    location_icon:{
-        color:colors.primary,
+    description:{
+        fontSize: 16,
+        fontWeight: "400",
+        marginTop: 10
     },
+    data:{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: 10
+    },
+    heading:{
 
-    negombo_text2:{
+    },
+    author:{
+        fontWeight: "bold",
+        fontSize: 15
+    },
+    date:{
         marginLeft:5,
         fontSize:16,
-        color:colors.gray,
+        color:colors.black,
         marginLeft:10
     },
-
+    source:{
+        color: "colors.gray",
+        fontWeight: "bold",
+        fontSize: 18
+    },
     text_view:{
         justifyContent:'center',
         alignItems:'flex-start',
         width:190
     }
 })
-
-export default NewsAlerts;
