@@ -1,32 +1,26 @@
 import React, {useEffect, useState} from "react";
 import {View,StyleSheet,Text,SafeAreaView, FlatList,TouchableOpacity,TextInput} from "react-native";
-import Article from "../screens/NewsAlerts";
+import Article from "./NewsAlerts";
 import axios from "axios";
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
 import { Feather, Entypo } from "@expo/vector-icons"; 
 
-
-const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}) => {
+// function HomeScreen(navigation, onPress){
+const NewsScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}) => {
     const [items,setArticles] = useState([]);
-    const getNews = () => {
-        axios.get('https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fwww.adaderana.lk%2Frss.php')
-            .then( (response) =>{
-                // handle success
-                setArticles(response.data.items);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-    }
+    // const [data,setData] = useState([]);
+    const [loading,setLoading] = useState(true)
 
-    useEffect(() => {
-        getNews();
-    },[]);
+ const url = "http://localhost:3000/"
+
+ useEffect(()=>{
+   fetch(url)
+   .then(response => response.json())
+   .then((json)=>setArticles(json))
+   .catch((error)=>console.log(error))
+   .finally(()=> setLoading(false))
+ },[])
 
     return(
         <SafeAreaView style={styles.container}>
@@ -34,33 +28,34 @@ const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
-                <Text style={styles.text1}>All News!!</Text>               
+                <Text style={styles.text1}>Alerts!!</Text>               
             </View>      
             
 
             <Text style={styles.text2}>News Notifications</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}></View>
-            <FlatList
-                data={items}
-                renderItem = {({item}) =>
+                    {
+                loading ? <Text>Loading ...</Text>:
+                items.map((post)=>(
                     <Article
-                        urlToImage = {item.thumbnail}
-                        title = {item.title}
-                        // description = {item.description}
-                        //author = {item.author}
-                        publishedAt = {item.pubDate}
-                        sourceName = {item.link}
-                        url={item.link}
-                    />}
-                keyExtractor = {(item) => item.title}
-            />
+                    urlToImage = {post.image}
+                    title = {post.title}
+                    // description = {post.description}
+                    //author = {post.author}
+                    publishedAt = {post.date}
+                    sourceName = {post.source}
+                    url={post.source}
+                />
+                ))
+            }
+          
 
        
         </SafeAreaView>
     )
 }
 
-export default HomeScreen;
+export default NewsScreen;
 
 const styles = StyleSheet.create({
     container:{

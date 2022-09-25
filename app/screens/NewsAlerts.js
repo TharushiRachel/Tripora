@@ -36,12 +36,12 @@ const Article = (props) => {
 
             <View style={styles.data}>
                 {/* <Text style={styles.heading}>by: <Text style={styles.author}>{props.author}</Text></Text> */}
-                <Text style={styles.date}>{moment(props.publishedAt).format("MMM Do YY") }</Text>
+                <Text style={styles.source}>Date: <Text style={styles.data}>{moment(props.publishedAt).format("MMM Do YY") }</Text></Text>
             </View>
 
         {/*     source */}
             <View style={{marginTop: 10}}>
-                <Text style={styles.date}>source: <Text style={styles.source}>{props.sourceName}</Text></Text>
+                <Text style={styles.source}>Source: <Text style={styles.data}>{props.sourceName}</Text></Text>
             </View>
             </View>
         </Pressable>
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     data:{
         flexDirection: "row",
         justifyContent: "space-between",
-        marginTop: 10
+        marginTop: 10,
+        color:colors.gray,
     },
     heading:{
 
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     date:{
         marginLeft:5,
         fontSize:16,
-        color:colors.black,
+        color:colors.gray,
         marginLeft:10
     },
     source:{
