@@ -12,6 +12,9 @@ import SlideScreen3 from "../screens/SlideScreen3";
 import SlideScreen4 from "../screens/SlideScreen4";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
+import LocationScreen1 from "../screens/LocationScreen1";
+import HomeScreen from "../screens/HomeScreen";
+import DetailsScreen from "../screens/DetailsScreen";
 
 const config = {
   animation: "spring",
@@ -42,6 +45,9 @@ const OnboardNavigator = () => (
     <Stack.Screen name="SlideScreen4" component={SlideScreen4} />
     <Stack.Screen name="SingIn" component={SingIn} />
     <Stack.Screen name="Registration" component={Registration} />
+    <Stack.Screen name="LocationScreen1" component={LocationScreen1} />
+    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+    <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
 
   </Stack.Navigator>
 );
