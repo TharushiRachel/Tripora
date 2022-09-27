@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import colors from "../config/colors";
 import ItemPicker from "../components/ItemPicker";
 import { MaterialIcons } from "@expo/vector-icons";
+import axios from "axios";
 
-const categories = [
+const locations = [
   { label: "Abhayagiriya", value: 1 },
   { label: "Batticaloa Fort", value: 2 },
   { label: "Buddangala", value: 3 },
@@ -120,17 +127,44 @@ const times = [
 ];
 
 function BestTime({ navigation }) {
-  const [category, setCategory] = useState(categories[null]);
-  const [month, setMonth] = useState(months[null]);
-  const [day, setDay] = useState(days[null]);
-  const [time, setTime] = useState(times[null]);
+  const [id, setId] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [time, setTime] = useState("");
+  const [msg, setMsg] = useState("Pleace Input Values");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const params = {
+      id,
+      month,
+      day,
+      time,
+    };
+
+    axios
+      .post("https://tripora.herokuapp.com/prediction", params)
+      .then((res) => {
+        const data = res.data.data;
+        const parameters = JSON.stringify(params);
+        const msg = `Parameters: ${parameters}\nCrowd: ${data.prediction}%`;
+        const msg2 = `${data.prediction}%`;
+        setMsg(msg2);
+        alert(msg);
+        // reset();
+      })
+      .catch((error) => alert(`Error: ${error.message}`));
+  };
+
   return (
     <>
       <View style={styles.view1}>
         <ItemPicker
-          selectedItem={category}
-          onSelectItem={(item) => setCategory(item)}
-          items={categories}
+          selectedItem={id}
+          locations={locations}
+          value={id}
+          onSelectItem={(item) => setId(item.value)}
+          items={locations}
           icon="apps"
           placeholder="Select A Location"
         />
@@ -149,27 +183,36 @@ function BestTime({ navigation }) {
         <View style={styles.picContainer}>
           <ItemPicker
             selectedItem={month}
-            onSelectItem={(item) => setMonth(item)}
+            value={month}
+            months={months}
+            onSelectItem={(item) => setMonth(item.value)}
             items={months}
             icon="calendar-month"
             placeholder="Choose Month"
           />
           <ItemPicker
             selectedItem={day}
-            onSelectItem={(item) => setDay(item)}
+            value={day}
+            days={days}
+            onSelectItem={(item) => setDay(item.value)}
             items={days}
             icon="calendar-today"
             placeholder="Choose Day"
           />
           <ItemPicker
             selectedItem={time}
-            onSelectItem={(item) => setTime(item)}
+            value={time}
+            times={times}
+            onSelectItem={(item) => setTime(item.value)}
             items={times}
             icon="clock-time-five-outline"
             placeholder="Choose Time"
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={(e) => handleSubmit(e)}
+        >
           <Text style={styles.btnText}>Check Now</Text>
         </TouchableOpacity>
       </View>
@@ -177,7 +220,7 @@ function BestTime({ navigation }) {
       <View style={styles.view3}>
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Crowed - 87%</Text>
+          <Text style={styles.smallText}>Crowed - {msg}</Text>
         </View>
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color="blue" />
