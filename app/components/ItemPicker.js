@@ -35,9 +35,7 @@ function ItemPicker({
               style={styles.icon}
             />
           )}
-          <Text style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </Text>
+          <Text style={styles.text}>{selectedItem?.label || placeholder}</Text>
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
