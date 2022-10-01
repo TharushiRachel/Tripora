@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
+  ActivityIndicator,
 } from "react-native";
 import colors from "../config/colors";
 import ItemPicker from "../components/ItemPicker";
@@ -198,8 +198,12 @@ function BestTime({ navigation }) {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [time, setTime] = useState("");
-  const [msg, setMsg] = useState("Please Input Values");
+  const [msg, setMsg] = useState("");
+  const [msg2, setMsg2] = useState("");
+  const [msg3, setMsg3] = useState("");
+  const [msg4, setMsg4] = useState("");
 
+  // Busy count prediction
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = {
@@ -214,9 +218,57 @@ function BestTime({ navigation }) {
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
-        const msg = `Parameters: ${parameters}\nCrowd: ${data.prediction}%`;
-        const msg2 = `${data.prediction}%`;
-        setMsg(msg2);
+        // const msg = `Parameters: ${parameters}\nCrowd: ${data.prediction}%`;
+        const msg = `${data.prediction}%`;
+        const msg2 = `${data.status}`;
+        setMsg(msg);
+        setMsg2(msg2);
+        // alert(msg);
+        // reset();
+      })
+      .catch((error) => alert(`Error: ${error.message}`));
+  };
+
+  // Best time prediction
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+    const params = {
+      id,
+      month,
+      day,
+      time,
+    };
+
+    axios
+      .post("https://tripora.herokuapp.com/timesuggest", params)
+      .then((res) => {
+        const data = res.data.data;
+        const parameters = JSON.stringify(params);
+        const msg3 = `${data.best_time}`;
+        setMsg3(msg3);
+        // alert(msg);
+        // reset();
+      })
+      .catch((error) => alert(`Error: ${error.message}`));
+  };
+
+  // Best months prediction
+  const handleSubmit3 = (e) => {
+    e.preventDefault();
+    const params = {
+      id,
+      month,
+      day,
+      time,
+    };
+
+    axios
+      .post("https://tripora.herokuapp.com/monthsuggest", params)
+      .then((res) => {
+        const data = res.data.data;
+        const parameters = JSON.stringify(params);
+        const msg4 = `${data.best_month}`;
+        setMsg4(msg4);
         // alert(msg);
         // reset();
       })
@@ -226,28 +278,22 @@ function BestTime({ navigation }) {
   return (
     <>
       <View style={styles.view1}>
-        <ItemPicker
-          selectedItem={locations[id - 1]}
-          locations={locations}
-          value={id}
-          onSelectItem={(item) => setId(item.value)}
-          items={locations}
-          icon="apps"
-          placeholder="Select A Location"
-        />
         <View style={styles.textContainer}>
-          <MaterialIcons name="access-time" size={17} color="blue" />
-          <Text style={styles.smallText}>Best Time to visit - 6AM</Text>
-        </View>
-      </View>
-
-      <View style={styles.view2}>
-        <View style={styles.textContainer}>
-          <Text style={styles.text1}>
+          {/* <Text style={styles.text1}>
             Check the peak times on the day you want to travel
-          </Text>
+          </Text> */}
         </View>
         <View style={styles.picContainer}>
+          <ItemPicker
+            selectedItem={locations[id - 1]}
+            locations={locations}
+            value={id}
+            onSelectItem={(item) => setId(item.value)}
+            items={locations}
+            icon="apps"
+            placeholder="Select A Location"
+          />
+
           <ItemPicker
             selectedItem={months[month - 1]}
             value={month}
@@ -278,37 +324,48 @@ function BestTime({ navigation }) {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={(e) => handleSubmit(e)}
+          onPress={(e) => {
+            handleSubmit(e);
+            handleSubmit2(e);
+            handleSubmit3(e);
+          }}
         >
           <Text style={styles.btnText}>Check Now</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.view3}>
+      <View style={styles.view2}>
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color="blue" />
           <Text style={styles.smallText}>Crowed - {msg}</Text>
         </View>
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Status - Busy</Text>
+          <Text style={styles.smallText}>Status - {msg2}</Text>
         </View>
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Suggested Time - 6AM</Text>
+          <Text style={styles.smallText}>Suggested Time - {msg3}</Text>
+        </View>
+        <View style={styles.textContainer}>
+          <MaterialIcons name="access-time" size={17} color="blue" />
+          <Text style={styles.smallText}>Best Months To Visit - {msg4}</Text>
         </View>
       </View>
 
-      <View style={styles.view4}>
-        <View style={styles.View4left}>
+      <View style={styles.view3}>
+        <View style={styles.View3left}>
           <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={(e) => handleSubmit2(e)}
+            >
               <Text style={styles.btnText}>Add to Schedule</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        <View style={styles.view4right}>
+        <View style={styles.view3right}>
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
               style={styles.button}
@@ -324,11 +381,6 @@ function BestTime({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  view1: {
-    height: "20%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   textContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -336,13 +388,12 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   smallText: {
-    fontSize: 13,
+    fontSize: 14,
     textTransform: "uppercase",
     fontWeight: "bold",
     paddingLeft: 5,
   },
-  view2: {
-    backgroundColor: "white",
+  view1: {
     height: "50%",
     justifyContent: "center",
     alignItems: "center",
@@ -364,6 +415,7 @@ const styles = StyleSheet.create({
     width: "70%",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 10,
   },
   button: {
     backgroundColor: colors.primary,
@@ -381,8 +433,9 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
   },
-  view3: {
-    height: "15%",
+  view2: {
+    marginTop: 20,
+    height: "25%",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     marginLeft: 30,
@@ -390,21 +443,21 @@ const styles = StyleSheet.create({
     // borderTopWidth: 2,
     // borderColor: colors.primary,
   },
-  view4: {
-    height: "15%",
+  view3: {
+    height: "25%",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     borderTopWidth: 2,
     borderColor: colors.primary,
   },
-  View4left: {
+  View3left: {
     flex: 1,
     width: "50%",
     alignItems: "center",
     justifyContent: "center",
   },
-  view4right: {
+  view3right: {
     flex: 1,
     width: "50%",
     alignItems: "flex-start",
