@@ -17,6 +17,9 @@ import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
 import TripScedule from "../screens/TripScedule";
 import NewsAlerts from "../screens/NewsAlerts";
+import TourGuideRegister from "../screens/TourGuideRegister";
+import TourGuideList from "../screens/TourGuideList";
+import RegisterT from "../screens/RegisterT";
 
 const config = {
   animation: "spring",
@@ -52,6 +55,10 @@ const OnboardNavigator = () => (
     <Stack.Screen name="TourGuide" component={TourGuide} />
     <Stack.Screen name="TripScedule" component={TripScedule} />
     <Stack.Screen name="NewsAlerts" component={NewsAlerts} />
+    <Stack.Screen name="TourGuideRegister" component={TourGuideRegister} />
+    <Stack.Screen name="TourGuideList" component={TourGuideList} />
+    <Stack.Screen name="RegisterT" component={RegisterT} />
+
 
   </Stack.Navigator>
 );

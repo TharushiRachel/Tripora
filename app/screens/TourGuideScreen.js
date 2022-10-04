@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
     StyleSheet,
     View,
@@ -14,11 +14,26 @@ import tourguide from '../assets/tourguide.png';
 import PrevSlideButton from "../components/PrevSlideButton";
 
 
+
+
 const IMAGENAME = require("../assets/guide2.png"); 
 
 const TourGuideScreen = ({navigation, onPress}) =>{
+    const [data,setTourGuide] = useState([]);
+    // const [data,setData] = useState([]);
+    const [loading,setLoading] = useState(true)
 
     // const { onPress, title = 'Save' } = props;
+
+    const url = "http://localhost:3000/tour-guide/633168f0bacc220c49e10bc8"
+
+ useEffect(()=>{
+   fetch(url)
+   .then(response => response.json())
+   .then((json)=>setTourGuide(json))
+   .catch((error)=>console.log(error))
+   .finally(()=> setLoading(false))
+ },[])
 
     return(
         <View style={styles.body}>
@@ -34,7 +49,9 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 
             <Text style={styles.text6}>Recomended for you</Text><br></br>
 
-            <View style={styles.box1}>
+  
+
+            {/* <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>Sujeewa de Silva</Text>
             </View>
@@ -48,7 +65,38 @@ const TourGuideScreen = ({navigation, onPress}) =>{
             <Text style={styles.text5}>sujeewads@gmail.com</Text>
 
             <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>077-2621988</Text>
+            <Text style={styles.text5}>077-2621988</Text> */}
+
+
+<View style={styles.container}>
+      {
+        loading ? <Text>Loading ...</Text>:
+        data.map((post)=>(
+          <View >
+            <View style={styles.box1}>
+                <Image source={tourguide} style={styles.guide_img} />
+                <Text style={styles.text2}>{post.username}</Text>
+            </View>
+
+            <Text style={styles.text3}>Account Info</Text>
+
+            <Text style={styles.text4}>NAME</Text>
+            <Text style={styles.text5}>{post.fullname}</Text>
+
+            <Text style={styles.text4}>EMAIL</Text>
+            <Text style={styles.text5}>{post.email}</Text>
+
+            <Text style={styles.text4}>MOBILE</Text>
+            <Text style={styles.text5}>{post.phone}</Text>
+
+            {/* <Text style={{fontSize:30, fontWeight: 'bold'}}>{post.name}</Text> */}
+             {/* <Text style={{fontSize:15, color:'blue'}} >{post.email}</Text> */}
+            {/* <Text style={{fontSize:15, color:'blue'}} >{post.phone}</Text> */}
+          </View>
+        ))
+      }
+    </View>
+
 
             {/* <Button title="HIRE" style={styles.hire_btn}
              color="#54D2C4"
