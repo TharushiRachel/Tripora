@@ -1,23 +1,67 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Image, Platform,SafeAreaView } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Circle,Callout,Marker } from 'react-native-maps';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
+import * as Location from 'expo-location';
 
+const screen = Dimensions.get('window');
+const ASPECT_RATIO = screen.width / screen.height;
+const LATITUDE_DELTA = 0.04;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const GoogleMap = ({ navigation }) => {
   
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+    let address = await Location.reverseGeocodeAsync(location.coords);
+    console.log(address);
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
     return (
       // <SafeAreaView style={styles.container}>
         <View style={styles.container}>
            <MapView style={StyleSheet.absoluteFill}
                   initialRegion={{
-                    latitude: 6.906079,
-                    longitude: 79.969628,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
+                    latitude: 7.207400,
+                    longitude: 79.837639,
+                    latitudeDelta: LATITUDE_DELTA,
+                    longitudeDelta: LONGITUDE_DELTA
                   }}
-            />
+                  provider="google"
+            >
+              <Marker coordinate={{ 
+                    latitude: 7.207400,
+                    longitude: 79.837639}} >
+
+                    <Callout>
+                      <Text>I'm here</Text>
+                    </Callout>
+              </Marker>
+              <Circle center={{ 
+                    latitude: 7.207400,
+                    longitude: 79.837639}} radius={1000} /> 
+            </MapView>
          <View style={styles.bottomCard}>
                 {/* <Text>Where are you going..?</Text> */}
                 <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
@@ -49,7 +93,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         alignItems: 'center',
         height: 48,
-        width:300,
+        width:350,
         justifyContent: 'center',
         marginTop: 16,
     },
