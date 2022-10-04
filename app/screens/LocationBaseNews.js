@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 
     text1: {
         color: '#000000',
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:230,
         marginTop:35,
         fontSize:18,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
     text2:{
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         color:'#696969',
         marginLeft:20
     },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     negombo_text:{
         marginTop:0,
         fontSize:20,
-        fontWeight:600,
+        // fontWeight:600,
         color:colors.primary,
         marginLeft:10
     },

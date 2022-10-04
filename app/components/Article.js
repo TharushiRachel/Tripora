@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {View,StyleSheet,Text,SafeAreaView, FlatList,TouchableOpacity,TextInput} from "react-native";
+// import { Container, Header, Content,Left, Body, Right, Title, Tab, Tabs } from 'native-base';
 import Article from "../screens/NewsAlerts";
 import axios from "axios";
 import { AntDesign } from '@expo/vector-icons'; 
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
 
     text1: {
         color: '#000000',
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:230,
         marginTop:35,
         fontSize:18,
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
 
     text2:{
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         color:'#696969',
         marginLeft:20
     },
