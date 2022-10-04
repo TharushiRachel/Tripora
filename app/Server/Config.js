@@ -4,9 +4,11 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 // require("./NewsModel")
 require("./TourGuideModel")
+require("./TouristModel")
 
 // const NewsAtricle = mongoose.model("newsatricle")
 const TourGuide = mongoose.model("tourguide")
+const Tourist = mongoose.model("tourist")
 
 
 app.use(bodyParser.json())
@@ -138,6 +140,26 @@ app.get('/tour-guide/:id',(req,res) =>{
 //     console.log(err)
 // })
 // })
+
+
+
+//Tourist
+app.post('/tourist/preferences',(req,res) =>{
+    const tourist = new Tourist({
+        country : req.body.country,
+        language:req.body.language,
+        preferedType : req.body.preferedType,
+        
+    })
+    tourist.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
 
 
 
