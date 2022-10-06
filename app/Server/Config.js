@@ -122,13 +122,15 @@ app.get('/tour-guide',(req,res) =>{
 })
 
 app.get('/tour-guide/:id',(req,res) =>{
-    TourGuide.find(req.body.id)
+    if(req.params && req.params.id){
+    TourGuide.findById(req.body.id)
   .then(data =>{
       console.log(data)
       res.send(data)
   }).catch(err => {
     console.log(err)
 })
+    }
 })
 
 // app.get('http://localhost:3000/tour-guide/${id}',(req,res) =>{
@@ -166,3 +168,8 @@ app.post('/tourist/preferences',(req,res) =>{
 app.listen(3000,() =>{
     console.log("Listening on 3000")
 })  
+
+
+
+
+

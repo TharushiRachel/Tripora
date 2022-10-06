@@ -54,7 +54,7 @@ export default class Preferences extends React.Component {
     this.setState({[e.target.name]: e.target.value })
 }
 
-  onSubmit(e){
+  onSubmit(e,navigation){
     e.preventDefault();
     let tourist={
         country:this.state.country,
@@ -65,7 +65,8 @@ export default class Preferences extends React.Component {
 
     axios.post('http://localhost:3000/tourist/preferences', tourist)
 .then(response => {
-  alert('Data successfully inserted')
+//   alert('Data successfully inserted')
+  navigation.navigate("Dashboard")
 })
 .catch(error => {
   console.log(error.message);
