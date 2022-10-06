@@ -246,8 +246,6 @@ function BestTime({ navigation }) {
         const parameters = JSON.stringify(params);
         const msg3 = `${data.best_time}`;
         setMsg3(msg3);
-        // alert(msg);
-        // reset();
       })
       .catch((error) => alert(`Error: ${error.message}`));
   };
@@ -269,8 +267,6 @@ function BestTime({ navigation }) {
         const parameters = JSON.stringify(params);
         const msg4 = `${data.best_month}`;
         setMsg4(msg4);
-        // alert(msg);
-        // reset();
       })
       .catch((error) => alert(`Error: ${error.message}`));
   };
@@ -278,11 +274,7 @@ function BestTime({ navigation }) {
   return (
     <>
       <View style={styles.view1}>
-        <View style={styles.textContainer}>
-          {/* <Text style={styles.text1}>
-            Check the peak times on the day you want to travel
-          </Text> */}
-        </View>
+        <View style={styles.textContainer}></View>
         <View style={styles.picContainer}>
           <ItemPicker
             selectedItem={locations[id - 1]}
@@ -336,45 +328,38 @@ function BestTime({ navigation }) {
 
       <View style={styles.view2}>
         <View style={styles.textContainer}>
-          <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Crowed - {msg}</Text>
+          <MaterialIcons
+            name="people-outline"
+            size={17}
+            color={colors.primary}
+          />
+          <Text style={styles.smallText}>Crowd - </Text>
+          <Text style={styles.smallText2}>{msg}</Text>
         </View>
         <View style={styles.textContainer}>
-          <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Status - {msg2}</Text>
+          <MaterialIcons name="lock-open" size={17} color={colors.primary} />
+          <Text style={styles.smallText}>Status - </Text>
+          <Text style={styles.smallText2}>{msg2}</Text>
         </View>
         <View style={styles.textContainer}>
-          <MaterialIcons name="lock-open" size={17} color="blue" />
-          <Text style={styles.smallText}>Suggested Time - {msg3}</Text>
+          <MaterialIcons name="access-time" size={17} color={colors.primary} />
+          <Text style={styles.smallText}>Best Time To Visit - </Text>
+          <Text style={styles.smallText2}>{msg3}</Text>
         </View>
         <View style={styles.textContainer}>
-          <MaterialIcons name="access-time" size={17} color="blue" />
-          <Text style={styles.smallText}>Best Months To Visit - {msg4}</Text>
+          <MaterialIcons name="date-range" size={17} color={colors.primary} />
+          <Text style={styles.smallText}>Best Months To Visit - </Text>
+          <Text style={styles.smallText2}>{msg4}</Text>
         </View>
       </View>
 
       <View style={styles.view3}>
-        <View style={styles.View3left}>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={(e) => handleSubmit2(e)}
-            >
-              <Text style={styles.btnText}>Add to Schedule</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.view3right}>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("SuggestedPlaces")}
-            >
-              <Text style={styles.btnText}>View Suggestions</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("SuggestedPlaces")}
+        >
+          <Text style={styles.btnText}>View Suggested Locations</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -390,11 +375,18 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 14,
     textTransform: "uppercase",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     paddingLeft: 5,
   },
+  smallText2: {
+    fontSize: 14,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    paddingLeft: 5,
+    color: "blue",
+  },
   view1: {
-    height: "50%",
+    height: "55%",
     justifyContent: "center",
     alignItems: "center",
     borderTopWidth: 2,
@@ -440,28 +432,26 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginLeft: 30,
     marginRight: 50,
-    // borderTopWidth: 2,
-    // borderColor: colors.primary,
   },
   view3: {
-    height: "25%",
+    height: "20%",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     borderTopWidth: 2,
     borderColor: colors.primary,
   },
-  View3left: {
-    flex: 1,
-    width: "50%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  view3right: {
-    flex: 1,
-    width: "50%",
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
+  // View3left: {
+  //   flex: 1,
+  //   width: "50%",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
+  // view3right: {
+  //   flex: 1,
+  //   width: "50%",
+  //   alignItems: "flex-start",
+  //   justifyContent: "center",
+  // },
 });
 export default BestTime;
