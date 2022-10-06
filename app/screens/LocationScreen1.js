@@ -15,7 +15,7 @@ function LocationScreen1({ navigation, onPress }) {
     <StatusBar translucent backgroundColor="rgba(0,0,0,0)" />
     <ImageBackground
       style={{flex: 1}}
-      source={require("../assets/back6.jpg")}>
+      source={require("../assets/LocPic1.jpg")}>
       <View style={styles.details}>
         <Text style={{color: colors.white, fontSize: 35, fontWeight: 'bold'}}>
           Discover
