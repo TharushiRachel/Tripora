@@ -202,6 +202,7 @@ function BestTime({ navigation }) {
   const [msg2, setMsg2] = useState("");
   const [msg3, setMsg3] = useState("");
   const [msg4, setMsg4] = useState("");
+  const [msg5, setMsg5] = useState([]);
 
   // Busy count prediction
   const handleSubmit = (e) => {
@@ -271,6 +272,27 @@ function BestTime({ navigation }) {
       .catch((error) => alert(`Error: ${error.message}`));
   };
 
+  // Alternative places suggestion
+  const handleSubmit4 = (e) => {
+    e.preventDefault();
+    const params = {
+      id,
+      month,
+      day,
+      time,
+    };
+
+    axios
+      .post("https://tripora.herokuapp.com/locationsuggest", params)
+      .then((res) => {
+        const data = res.data.data;
+        const parameters = JSON.stringify(params);
+        const msg5 = `${data.best_location}`;
+        setMsg5(msg5);
+      })
+      .catch((error) => alert(`Error: ${error.message}`));
+  };
+
   return (
     <>
       <View style={styles.view1}>
@@ -282,7 +304,7 @@ function BestTime({ navigation }) {
             value={id}
             onSelectItem={(item) => setId(item.value)}
             items={locations}
-            icon="apps"
+            icon="google-maps"
             placeholder="Select A Location"
           />
 
@@ -320,6 +342,7 @@ function BestTime({ navigation }) {
             handleSubmit(e);
             handleSubmit2(e);
             handleSubmit3(e);
+            handleSubmit4(e);
           }}
         >
           <Text style={styles.btnText}>Check Now</Text>
@@ -356,7 +379,9 @@ function BestTime({ navigation }) {
       <View style={styles.view3}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("SuggestedPlaces")}
+          onPress={() =>
+            navigation.navigate("SuggestedPlaces", { paramKey: msg5 })
+          }
         >
           <Text style={styles.btnText}>View Suggested Locations</Text>
         </TouchableOpacity>
