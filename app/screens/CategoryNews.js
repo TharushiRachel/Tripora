@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import colors from "../config/colors";
-import ItemPicker from "../components/ItemPicker";
+// import ItemPicker from "../components/ItemPicker";
 import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 import { AntDesign } from '@expo/vector-icons'; 
