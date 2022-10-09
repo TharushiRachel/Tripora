@@ -89,10 +89,6 @@ app.get('/',(req,res) =>{
 })
 })
 
-app.listen(3000,() =>{
-    console.log("Listening on 3000")
-})  
-
 
 //Tour Guide
 app.post('/tour-guide',(req,res) =>{
