@@ -35,7 +35,7 @@ const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("CategoryNews")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
-                <Text style={styles.text1}>Sports News!!</Text>               
+                <Text style={styles.text1}>World News!!</Text>               
             </View>      
             
 
