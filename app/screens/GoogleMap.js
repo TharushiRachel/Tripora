@@ -43,24 +43,24 @@ const GoogleMap = ({ navigation }) => {
         <View style={styles.container}>
            <MapView style={StyleSheet.absoluteFill}
                   initialRegion={{
-                    latitude: 7.207400,
-                    longitude: 79.837639,
+                    latitude: 6.9146775,
+                    longitude: 79.9729445,
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA
                   }}
                   provider="google"
             >
               <Marker coordinate={{ 
-                    latitude: 7.207400,
-                    longitude: 79.837639}} >
+                    latitude: 6.9146775,
+                    longitude: 79.9729445}} >
 
                     <Callout>
                       <Text>I'm here</Text>
                     </Callout>
               </Marker>
               <Circle center={{ 
-                    latitude: 7.207400,
-                    longitude: 79.837639}} radius={1000} /> 
+                    latitude: 6.9146775,
+                    longitude: 79.9729445}} radius={1000} /> 
             </MapView>
          <View style={styles.bottomCard}>
                 {/* <Text>Where are you going..?</Text> */}

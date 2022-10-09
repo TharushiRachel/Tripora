@@ -137,7 +137,7 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner4}
-              onPress={() => navigation.navigate("NewsAlerts")}
+              onPress={() => navigation.navigate("CategoryNews")}
             >
               <MaterialIcons name="list-alt" size={44} color={colors.white} />
               <Text style={styles.title}>Check News Alerts</Text>
