@@ -5,6 +5,14 @@ const mongoose = require('mongoose')
 require("./NewsModel")
 
 const NewsAtricle = mongoose.model("newsatricle")
+// require("./NewsModel")
+require("./TourGuideModel")
+require("./TouristModel")
+
+// const NewsAtricle = mongoose.model("newsatricle")
+const TourGuide = mongoose.model("tourguide")
+const Tourist = mongoose.model("tourist")
+
 
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
@@ -80,6 +88,84 @@ app.get('/',(req,res) =>{
     console.log(err)
 })
 })
+
+app.listen(3000,() =>{
+    console.log("Listening on 3000")
+})  
+
+
+//Tour Guide
+app.post('/tour-guide',(req,res) =>{
+    const tourguide = new TourGuide({
+        username : req.body.username,
+        fullname:req.body.fullname,
+        email : req.body.email,
+        phone : req.body.phone, 
+        licenseNo : req.body.licenseNo,
+        languageProficiencies:req.body.languageProficiencies,
+        type: req.body.type,
+        description: req.body.description
+        
+    })
+    tourguide.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+
+app.get('/tour-guide',(req,res) =>{
+    TourGuide.find({})
+  .then(data =>{
+      console.log(data)
+      res.send(data)
+  }).catch(err => {
+    console.log(err)
+})
+})
+
+app.get('/tour-guide/:id',(req,res) =>{
+    TourGuide.find(req.body.id)
+  .then(data =>{
+      console.log(data)
+      res.send(data)
+  }).catch(err => {
+    console.log(err)
+})
+})
+
+// app.get('http://localhost:3000/tour-guide/${id}',(req,res) =>{
+//     TourGuide.find(id)
+//   .then(data =>{
+//       console.log(data)
+//       res.send(data)
+//   }).catch(err => {
+//     console.log(err)
+// })
+// })
+
+
+//Tourist
+app.post('/tourist/preferences',(req,res) =>{
+    const tourist = new Tourist({
+        country : req.body.country,
+        language:req.body.language,
+        preferedType : req.body.preferedType,
+        
+    })
+    tourist.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+
 
 app.listen(3000,() =>{
     console.log("Listening on 3000")

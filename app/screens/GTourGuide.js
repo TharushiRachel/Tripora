@@ -19,25 +19,25 @@ import PrevSlideButton from "../components/PrevSlideButton";
 const { width } = Dimensions.get("window");
 
 
-const IMAGENAME = require("../assets/guide2.png"); 
+const IMAGENAME = require("../assets/guide1.png"); 
 
-const TourGuideScreen = ({navigation, onPress}) =>{
-    const [data,setTourGuide] = useState([]);
+const GTourGuide = ({navigation, onPress}) =>{
+    // const [data,setTourGuide] = useState([]);
     // const [data,setData] = useState([]);
-    const [loading,setLoading] = useState(true)
+    // const [loading,setLoading] = useState(true)
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://localhost:3000/tour-guide/633168f0bacc220c49e10bc8"
+    // const url = "http://localhost:3000/tour-guide/633168f0bacc220c49e10bc8"
     // const url = "http://127.0.0.1:1100/tour-guide"
 
- useEffect(()=>{
-   fetch(url)
-   .then(response => response.json())
-   .then((json)=>setTourGuide(json))
-   .catch((error)=>console.log(error))
-   .finally(()=> setLoading(false))
- },[])
+//  useEffect(()=>{
+//    fetch(url)
+//    .then(response => response.json())
+//    .then((json)=>setTourGuide(json))
+//    .catch((error)=>console.log(error))
+//    .finally(()=> setLoading(false))
+//  },[])
 
 
 
@@ -73,24 +73,24 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 
   
 
-            {/* <View style={styles.box1}>
+            <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
-                <Text style={styles.text2}>Sujeewa de Silva</Text>
+                <Text style={styles.text2}>EG Upali</Text>
             </View>
 
             <Text style={styles.text3}>Account Info</Text>
 
             <Text style={styles.text4}>NAME</Text>
-            <Text style={styles.text5}>T. N. S. De Silva</Text>
+            <Text style={styles.text5}>E.G Upali</Text>
 
             <Text style={styles.text4}>EMAIL</Text>
-            <Text style={styles.text5}>sujeewads@gmail.com</Text>
+            <Text style={styles.text5}>egupali@hotmail.com</Text>
 
             <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>077-2621988</Text> */}
+            <Text style={styles.text5}>077-7605809</Text>
 
-
-<View style={styles.container}>
+//comment open
+{/* <View style={styles.container}>
       {
         loading ? <Text>Loading ...</Text>:
         data.map((post)=>(
@@ -98,29 +98,27 @@ const TourGuideScreen = ({navigation, onPress}) =>{
             <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>{post.username}</Text>
-                {/* <Text style={styles.text2}>{post.alias}</Text> */}
             </View>
 
             <Text style={styles.text3}>Account Info</Text>
 
             <Text style={styles.text4}>NAME</Text>
             <Text style={styles.text5}>{post.fullname}</Text>
-            {/* <Text style={styles.text5}>{post.name}</Text> */}
 
             <Text style={styles.text4}>EMAIL</Text>
             <Text style={styles.text5}>{post.email}</Text>
 
             <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>{post.phone}</Text>
+            <Text style={styles.text5}>{post.phone}</Text> */}
 
             {/* <Text style={{fontSize:30, fontWeight: 'bold'}}>{post.name}</Text> */}
              {/* <Text style={{fontSize:15, color:'blue'}} >{post.email}</Text> */}
             {/* <Text style={{fontSize:15, color:'blue'}} >{post.phone}</Text> */}
-          </View>
+          {/* </View>
         ))
       }
-    </View>
-
+    </View> */}
+//comment close
 
             {/* <Button title="HIRE" style={styles.hire_btn}
              color="#54D2C4"
@@ -279,4 +277,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default TourGuideScreen;
+export default GTourGuide;

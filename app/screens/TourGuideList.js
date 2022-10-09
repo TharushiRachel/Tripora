@@ -6,14 +6,13 @@ import {
     Button,
     TouchableOpacity,
     Image,
-    ScrollView,
-    Pressable
+    ScrollView
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import guide1 from '../assets/guide1.png';
 
-const FindAGuideScreen =({navigation, onPress}) =>{
+
+function TourGuideList(navigation, onPress){
 
     const [data,setTourGuide] = useState([]);
     // const [data,setData] = useState([]);
@@ -46,35 +45,43 @@ const FindAGuideScreen =({navigation, onPress}) =>{
                 <Text style={styles.text1}>Find a Tour Guide</Text>
             </View>
 
-            <TouchableOpacity style={styles.hire_btn} onPress={() => navigation.navigate("RegisterT")}>
-                <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333', justifyContent:'center'}} >Add New Guide</Text>
-                </TouchableOpacity>
-
             <ScrollView>
                 <TouchableOpacity  onPress={() => navigation.navigate("TourGuideScreen")}>
+
+                {
+        loading ? <Text>Loading ...</Text>:
+        data.map((post)=>(
+          <View style={{flex:1,alignItems: 'center',justifyContent: 'center'}}>
+            <Text style={{fontSize:30, fontWeight: 'bold'}}>{post.name}</Text>
+            {/* <Text style={{fontSize:15, color:'blue'}} >{post.body}</Text> */}
+          </View>
+        ))
+      }
                     
-            {
-                loading ? <Text>Loading ...</Text>:
-                data.map((post)=>{
+            {/* {
+                Items.map((guide)=>{
                     return(
                         <TouchableOpacity onPress={() => navigation.navigate("TourGuide")}>
-                        <View style={styles.item} >
+                        <View style={styles.item} key={guide.id}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            
-                                <View>
+                             */}
+                                {/* <View>
                                     <Image source={guide1} style={styles.guide_img} />
-                                </View>
-                                <View style={styles.text_view}>
-                                    <Text style={styles.text}>{post.username}</Text>
-                                    <Text style={styles.text2}>{post.description}</Text>
-                                </View>
+                                </View> */}
+                                {/* <View style={styles.text_view}>
+                                    <Text style={styles.text}>{guide.name}</Text> */}
+                                    {/* <Text style={styles.text2}>{guide.description}</Text> */}
+                                {/* </View>
                                 
                             </View>
                         </View>
                         </TouchableOpacity>
                     )
                 })
-            }
+            } */}
+
+
+
             </TouchableOpacity>
             </ScrollView>
         </View>
@@ -157,27 +164,10 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'flex-start',
        width:190
-    },
-
-    hire_btn:{
-        // width:320,
-        height:48,
-        marginLeft:200,
-        borderRadius:25,
-        backgroundColor:colors.primary,
-        justifyContent:'right',
-        alignItems:'right',
-        color:'white',
-        fontSize:18,
-        marginTop:0,
-        fontWeight:800,
-        marginRight:20,
-        padding:5
-        
-    },
+    }
 
     
     
 });
 
-export default FindAGuideScreen;
+export default TourGuideList;

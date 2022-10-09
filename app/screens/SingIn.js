@@ -71,7 +71,12 @@ const SignInScreen = ({ navigation, onPress }) => {
                 <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Registration")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333'}} >Sign Up</Text>
                 </TouchableOpacity>
+                
             </View> 
+
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("RegisterT")}>
+                <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333', justifyContent:'center'}} >Register as a Tour Guide</Text>
+                </TouchableOpacity>
             </div>
                      
         </View>     
