@@ -116,7 +116,7 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner3}
-              onPress={() => navigation.navigate("TourGuide")}
+              onPress={() => navigation.navigate("Language")}
             >
               <MaterialIcons
                 name="people-outline"
