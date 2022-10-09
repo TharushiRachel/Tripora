@@ -86,9 +86,10 @@ const styles = StyleSheet.create({
     data:{
         flexDirection: "row",
         justifyContent: "space-between",
-        marginTop: 10,
-        color:colors.gray,
+        marginTop: 12,
+        color:colors.black,
         fontWeight: 'bold',
+        
     },
     heading:{
 
