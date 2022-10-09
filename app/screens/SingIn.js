@@ -20,6 +20,7 @@ const SignInScreen = ({ navigation, onPress }) => {
     <ScrollView style={{flex:1,backgroundColor:'#fff',flexDirection:'column'}}>
       <View style={styles.container}>
   
+  
         <View style={styles.header}>
             <View style={{flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}} >
                     <Text style={{fontFamily:'OpenSans-SemiBold',fontSize:30,color:'#fff'}} >Welcome Back !</Text>
