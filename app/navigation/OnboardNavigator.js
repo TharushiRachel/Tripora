@@ -23,7 +23,7 @@ import CategoryNews from "../screens/CategoryNews";
 import Businness from "../screens/Businness";
 import Sports from "../screens/Sports";
 import World from "../screens/World";
-import NewsAlerts from "../screens/NewsAlerts";
+// import NewsAlerts from "../screens/NewsAlerts";
 import TourGuideRegister from "../screens/TourGuideRegister";
 import TourGuideList from "../screens/TourGuideList";
 import RegisterT from "../screens/RegisterT";
