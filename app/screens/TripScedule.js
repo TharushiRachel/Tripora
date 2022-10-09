@@ -34,14 +34,14 @@ const TripSchedule =({navigation, onPress})=>{
             <Text style={styles.text2}>Recomended for you</Text>
 
             <ScrollView>
-            <View style={styles.item}>
+            {/* <View style={styles.item}>
                 <Image source={negombo} style={styles.negombo_img} />
                 <Text style={styles.negombo_text}>Negombo</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <AntDesign name="enviroment" size={20} style={styles.location_icon}/>
                     <Text style={styles.negombo_text2} >Negombo, Sri Lanka</Text>
                 </View>
-            </View>
+            </View> */}
 
             
             <View style={styles.item}>
@@ -49,8 +49,9 @@ const TripSchedule =({navigation, onPress})=>{
                 <Text style={styles.negombo_text}>Sigiriya</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <AntDesign name="enviroment" size={20} style={styles.location_icon}/>
-                    <Text style={styles.negombo_text2} >Dambulla, Sri Lanka</Text>
+                    <Text style={styles.negombo_text2} >Dambulla, Sri Lanka</Text>                   
                 </View>
+                    <Text style={styles.negombo_text2} >October 1</Text>
             </View>
 
 
@@ -61,6 +62,7 @@ const TripSchedule =({navigation, onPress})=>{
                     <AntDesign name="enviroment" size={20} style={styles.location_icon}/>
                     <Text style={styles.negombo_text2} >Kandy, Sri Lanka</Text>
                 </View>
+                <Text style={styles.negombo_text2} >October 3</Text>
             </View>
 
             <View style={styles.item}>
@@ -70,6 +72,7 @@ const TripSchedule =({navigation, onPress})=>{
                     <AntDesign name="enviroment" size={20} style={styles.location_icon}/>
                     <Text style={styles.negombo_text2} >Ella, Sri Lanka</Text>
                 </View>
+                <Text style={styles.negombo_text2} >October 5</Text>
             </View>
 
             <View style={styles.item}>
@@ -79,6 +82,7 @@ const TripSchedule =({navigation, onPress})=>{
                     <AntDesign name="enviroment" size={20} style={styles.location_icon}/>
                     <Text style={styles.negombo_text2} >Yala, Sri Lanka</Text>
                 </View>
+                <Text style={styles.negombo_text2} >October 7</Text>
             </View>
 
             <View style={styles.item}>

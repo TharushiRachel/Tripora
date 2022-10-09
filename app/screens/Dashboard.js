@@ -5,6 +5,7 @@ import {
   View,
   Image,
   ImageBackground,
+  SafeAreaView,
   TouchableOpacity,
   TextInput,
   Keyboard, 
@@ -28,6 +29,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase, setCLicked }) =>{
     
     return (
+      <SafeAreaView style={styles.container}>
         <View style={styles.body}>
 
     <View style={styles.container}>
@@ -40,27 +42,32 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
       >
         {/* search Icon */}
         <Feather
-          name="search"
+          name="map-pin"
           size={20}
           color="black"
           style={{ marginLeft: 5 }}
         />
         {/* Input field */}
-        <TextInput
-          style={styles.input}
-          placeholder="Where are you going?"
+       <TouchableOpacity
+              // style={styles.inner1}
+              onPress={() => navigation.navigate("GoogleMap")}
+            >
+        <Text
+          style={styles.input}          
           value={searchPhrase}
           onChangeText={setSearchPhrase}
           onFocus={() => {
             setClicked(true);
           }}
-        />
+        >See Your Current Location Here</Text>
+         
         {/* cross Icon, depending on whether the search bar is clicked or not */}
         {clicked && (
           <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
               setSearchPhrase("")
           }}/>
         )}
+        </TouchableOpacity>
       </View>
       {/* cancel button, depending on whether the search bar is clicked or not */}
       {clicked && (
@@ -130,7 +137,7 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner4}
-              onPress={() => navigation.navigate("Dashboard")}
+              onPress={() => navigation.navigate("CategoryNews")}
             >
               <MaterialIcons name="list-alt" size={44} color={colors.white} />
               <Text style={styles.title}>Check News Alerts</Text>
@@ -140,8 +147,10 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
       </View>
 
     </View>
+    </SafeAreaView>
     );
   }
+
   
   const styles = StyleSheet.create({
 
@@ -198,7 +207,7 @@ const Dashboard = ({ navigation, onPress, clicked, searchPhrase, setSearchPhrase
     negombo_text:{
         marginTop:10,
         fontSize:20,
-        fontWeight:600,
+        // fontWeight:600,
         color:colors.primary
     },
 

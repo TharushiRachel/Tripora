@@ -16,6 +16,13 @@ import Dashboard from "../screens/Dashboard";
 import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
 import TripScedule from "../screens/TripScedule";
+import NewsAlerts from "../components/Article";
+import LocationNews from "../screens/LocationBaseNews";
+import GoogleMap from "../screens/GoogleMap";
+import CategoryNews from "../screens/CategoryNews";
+import Businness from "../screens/Businness";
+import Sports from "../screens/Sports";
+import World from "../screens/World";
 
 const config = {
   animation: "spring",
@@ -50,6 +57,13 @@ const OnboardNavigator = () => (
     <Stack.Screen name="FindAGuide" component={FindAGuide} />
     <Stack.Screen name="TourGuide" component={TourGuide} />
     <Stack.Screen name="TripScedule" component={TripScedule} />
+    <Stack.Screen name="NewsAlerts" component={NewsAlerts} />
+    <Stack.Screen name="CategoryNews" component={CategoryNews} />
+    <Stack.Screen name="LocationNews" component={LocationNews} />
+    <Stack.Screen name="GoogleMap" component={GoogleMap} />
+    <Stack.Screen name="Businness" component={Businness} />
+    <Stack.Screen name="Sports" component={Sports} />
+    <Stack.Screen name="World" component={World} />
 
   </Stack.Navigator>
 );
