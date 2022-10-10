@@ -12,6 +12,7 @@ import SlideScreen3 from "../screens/SlideScreen3";
 import SlideScreen4 from "../screens/SlideScreen4";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
+<<<<<<< HEAD
 import Dashboard from "../screens/Dashboard";
 import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
@@ -31,6 +32,11 @@ import Preferences from "../screens/Preferences";
 import Language from "../screens/Language";
 import FTourGuide from "../screens/FTourGuide";
 import GTourGuide from "../screens/GTourGuide";
+=======
+import LocationScreen1 from "../screens/LocationScreen1";
+import HomeScreen from "../screens/HomeScreen";
+import DetailsScreen from "../screens/DetailsScreen";
+>>>>>>> feature/uvindu
 
 const config = {
   animation: "spring",
@@ -61,6 +67,7 @@ const OnboardNavigator = () => (
     <Stack.Screen name="SlideScreen4" component={SlideScreen4} />
     <Stack.Screen name="SingIn" component={SingIn} />
     <Stack.Screen name="Registration" component={Registration} />
+<<<<<<< HEAD
     <Stack.Screen name="Dashboard" component={Dashboard} />
     <Stack.Screen name="FindAGuide" component={FindAGuide} />
     <Stack.Screen name="TourGuide" component={TourGuide} />
@@ -81,6 +88,11 @@ const OnboardNavigator = () => (
     <Stack.Screen name="GTourGuide" component={GTourGuide} />
 
 
+=======
+    <Stack.Screen name="LocationScreen1" component={LocationScreen1} />
+    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+    <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+>>>>>>> feature/uvindu
 
   </Stack.Navigator>
 );
