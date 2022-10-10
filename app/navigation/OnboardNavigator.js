@@ -4,12 +4,16 @@ import {
   TransitionPresets,
   CardStyleInterpolators,
 } from "@react-navigation/stack";
+import { AntDesign } from "@expo/vector-icons";
 
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SlideScreen1 from "../screens/SlideScreen1";
 import SlideScreen2 from "../screens/SlideScreen2";
 import SlideScreen3 from "../screens/SlideScreen3";
 import SlideScreen4 from "../screens/SlideScreen4";
+import Dashboard from "../screens/Dashboard";
+import BestTime from "../screens/BestTime";
+import SuggestedPlaces from "../screens/SuggestedPlaces";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
 <<<<<<< HEAD
@@ -56,8 +60,8 @@ const OnboardNavigator = () => (
     presentation="slide"
     screenOptions={{
       headerShown: false,
-      gestureEnabled: true,
-      gestureDirection: "horizontal",
+      // gestureEnabled: true,
+      // gestureDirection: "horizontal",
     }}
   >
     <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
@@ -65,6 +69,33 @@ const OnboardNavigator = () => (
     <Stack.Screen name="SlideScreen2" component={SlideScreen2} />
     <Stack.Screen name="SlideScreen3" component={SlideScreen3} />
     <Stack.Screen name="SlideScreen4" component={SlideScreen4} />
+    <Stack.Screen name="Dashboard" component={Dashboard} />
+    <Stack.Screen
+      name="BestTime"
+      component={BestTime}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Check Best Time To Visit",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
+    <Stack.Screen
+      name="SuggestedPlaces"
+      component={SuggestedPlaces}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Suggested locations",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
     <Stack.Screen name="SingIn" component={SingIn} />
     <Stack.Screen name="Registration" component={Registration} />
 <<<<<<< HEAD
