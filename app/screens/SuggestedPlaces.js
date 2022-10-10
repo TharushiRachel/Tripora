@@ -23,11 +23,11 @@ const SuggestedPlaces = ({ route }) => {
 const styles = StyleSheet.create({
   text1: {
     color: "black",
-    marginRight: 100,
+    // marginRight: 10,
     marginTop: 35,
-    fontSize: 20,
+    fontSize: 18,
     marginBottom: 40,
-    padding: 10,
+    padding: 20,
   },
 
   text2: {
