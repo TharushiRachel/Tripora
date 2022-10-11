@@ -62,7 +62,7 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Language")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
                 <Text style={styles.text1}>Tour Guide</Text>

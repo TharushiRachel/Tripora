@@ -21,7 +21,7 @@ const FindAGuideScreen =({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://localhost:3000/tour-guide"
+    const url = "http://localhost:3000/newtour-guide"
 
  useEffect(()=>{
    fetch(url)
@@ -42,13 +42,16 @@ const FindAGuideScreen =({navigation, onPress}) =>{
         <View style={styles.body}>
             
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
                 <AntDesign name="left" size={20} style={styles.back_btn} />
+                </TouchableOpacity>
                 <Text style={styles.text1}>Find a Tour Guide</Text>
+                
             </View>
 
-            <TouchableOpacity style={styles.hire_btn} onPress={() => navigation.navigate("RegisterT")}>
+            {/* <TouchableOpacity style={styles.hire_btn} onPress={() => navigation.navigate("RegisterT")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333', justifyContent:'center'}} >Add New Guide</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
             <ScrollView>
                 <TouchableOpacity  onPress={() => navigation.navigate("TourGuideScreen")}>
@@ -65,8 +68,9 @@ const FindAGuideScreen =({navigation, onPress}) =>{
                                     <Image source={guide1} style={styles.guide_img} />
                                 </View>
                                 <View style={styles.text_view}>
-                                    <Text style={styles.text}>{post.username}</Text>
-                                    <Text style={styles.text2}>{post.description}</Text>
+                                    <Text style={styles.text}>{post.name}</Text>
+                                    <Text style={styles.text2}>{post.language}</Text>
+                                    <Text style={styles.text2}>{post.phone}</Text>
                                 </View>
                                 
                             </View>

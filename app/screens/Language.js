@@ -28,7 +28,13 @@ const Language = ({ navigation, onPress }) => {
     <ScrollView style={{flex:1,backgroundColor:'#fff',flexDirection:'column'}}>
       <View style={styles.container}>
   
-      
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+                        <AntDesign name="left" size={20} style={styles.back_btn} />
+                    </TouchableOpacity>
+                    <Text style={styles.text1}>Select Your Language</Text>
+                
+                </View>
 
                 <View style={styles.topView4}>
                     <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("TourGuide")}>
@@ -45,6 +51,13 @@ const Language = ({ navigation, onPress }) => {
                 <View style={styles.topView4}>
                     <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("GTourGuide")}>
                         <Text style={styles.bottomText}>German</Text>
+                    </TouchableOpacity>
+                </View>
+
+
+                <View style={styles.topView5}>
+                    <TouchableOpacity style={styles.bottomContainer1} onPress={() => navigation.navigate("FindAGuide")}>
+                        <Text style={styles.bottomText}>View all Tour Guides</Text>
                     </TouchableOpacity>
                 </View>
             </View> 
@@ -155,6 +168,21 @@ const styles = StyleSheet.create({
       fontFamily:'OpenSans-SemiBold',
       color:'#fff'
   },
+
+  topView5:{
+    justifyContent:'center',
+    width:'95%',
+    backgroundColor:'#009387',
+    height:50,
+    marginTop:300,
+    borderRadius:10,
+    fontSize:15,
+    letterSpacing:1.5,
+    textAlign:'center',
+    position:'relative',
+    fontFamily:'OpenSans-SemiBold',
+    color:'#fff'
+},
 
   container: {
     flex: 1,

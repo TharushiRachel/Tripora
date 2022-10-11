@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import tourguide from '../assets/guide1.png'; 
+import tourguide from '../assets/tourguide.png'; 
 import PrevSlideButton from "../components/PrevSlideButton";
 
 const { width } = Dimensions.get("window");
@@ -62,7 +62,7 @@ const FTourGuide = ({navigation, onPress}) =>{
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Language")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
                 <Text style={styles.text1}>Tour Guide</Text>

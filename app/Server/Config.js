@@ -5,10 +5,12 @@ const mongoose = require('mongoose')
 // require("./NewsModel")
 require("./TourGuideModel")
 require("./TouristModel")
+require("./NewTourGuideModel")
 
 // const NewsAtricle = mongoose.model("newsatricle")
 const TourGuide = mongoose.model("tourguide")
 const Tourist = mongoose.model("tourist")
+const NewTourGuide = mongoose.model("newtourguide")
 
 
 app.use(bodyParser.json())
@@ -157,6 +159,40 @@ app.post('/tourist/preferences',(req,res) =>{
     }).catch(err => {
         console.log(err)
     })
+})
+
+
+//Tour Guide New
+app.post('/newtour-guide',(req,res) =>{
+    const newtourguide = new NewTourGuide({
+        name : req.body.name,
+        alias:req.body.alias,
+        email : req.body.email,
+        phone : req.body.phone, 
+        licenseNo : req.body.licenseNo,
+        language:req.body.language,
+        type: req.body.type,
+        description: req.body.description
+        
+    })
+    newtourguide.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+
+app.get('/newtour-guide',(req,res) =>{
+    NewTourGuide.find({})
+  .then(data =>{
+      console.log(data)
+      res.send(data)
+  }).catch(err => {
+    console.log(err)
+})
 })
 
 
