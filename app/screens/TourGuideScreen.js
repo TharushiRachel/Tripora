@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import tourguide from '../assets/tourguide.png'; 
+import tourguide from '../assets/guideavatar.jpg'; 
 import PrevSlideButton from "../components/PrevSlideButton";
 
 const { width } = Dimensions.get("window");

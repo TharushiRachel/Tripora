@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import tourguide from '../assets/tourguide.png'; 
+import tourguide from '../assets/guideavatar.jpg'; 
 import PrevSlideButton from "../components/PrevSlideButton";
 
 const { width } = Dimensions.get("window");
@@ -89,7 +89,7 @@ const GTourGuide = ({navigation, onPress}) =>{
             <Text style={styles.text4}>MOBILE</Text>
             <Text style={styles.text5}>077-7605809</Text>
 
-//comment open
+
 {/* <View style={styles.container}>
       {
         loading ? <Text>Loading ...</Text>:
@@ -118,7 +118,7 @@ const GTourGuide = ({navigation, onPress}) =>{
         ))
       }
     </View> */}
-//comment close
+
 
             {/* <Button title="HIRE" style={styles.hire_btn}
              color="#54D2C4"
