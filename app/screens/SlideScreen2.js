@@ -69,7 +69,10 @@ function SlideScreen2({ navigation, onPress }) {
 
       {/* End button */}
       <View style={styles.topView4}>
-        <TouchableOpacity style={styles.bottomContainer} onPress={onPress}>
+        <TouchableOpacity
+          style={styles.bottomContainer}
+          onPress={() => navigation.navigate("SingIn")}
+        >
           <Text style={styles.bottomText}>Skip</Text>
         </TouchableOpacity>
       </View>

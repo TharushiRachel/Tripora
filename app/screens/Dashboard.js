@@ -5,6 +5,7 @@ import {
   View,
   Image,
   ImageBackground,
+  SafeAreaView,
   TouchableOpacity,
   TextInput,
   Keyboard,
@@ -24,6 +25,7 @@ import elephants from "../assets/elephants.png";
 import mirissa from "../assets/mirissa.png";
 import waterfall from "../assets/waterfall.png";
 import { MaterialIcons } from "@expo/vector-icons";
+import BottomNavigator from "../components/BottomNavigator";
 
 const Dashboard = ({
   navigation,
@@ -43,33 +45,40 @@ const Dashboard = ({
         >
           {/* search Icon */}
           <Feather
-            name="search"
+            name="map-pin"
             size={20}
             color="black"
             style={{ marginLeft: 5 }}
           />
           {/* Input field */}
-          <TextInput
-            style={styles.input}
-            placeholder="Where are you going?"
-            value={searchPhrase}
-            onChangeText={setSearchPhrase}
-            onFocus={() => {
-              setClicked(true);
-            }}
-          />
-          {/* cross Icon, depending on whether the search bar is clicked or not */}
-          {clicked && (
-            <Entypo
-              name="cross"
-              size={20}
-              color="black"
-              style={{ padding: 1 }}
-              onPress={() => {
-                setSearchPhrase("");
+          <TouchableOpacity
+            // style={styles.inner1}
+            onPress={() => navigation.navigate("GoogleMap")}
+          >
+            <Text
+              style={styles.input}
+              value={searchPhrase}
+              onChangeText={setSearchPhrase}
+              onFocus={() => {
+                setClicked(true);
               }}
-            />
-          )}
+            >
+              See Your Current Location Here
+            </Text>
+
+            {/* cross Icon, depending on whether the search bar is clicked or not */}
+            {clicked && (
+              <Entypo
+                name="cross"
+                size={20}
+                color="black"
+                style={{ padding: 1 }}
+                onPress={() => {
+                  setSearchPhrase("");
+                }}
+              />
+            )}
+          </TouchableOpacity>
         </View>
         {/* cancel button, depending on whether the search bar is clicked or not */}
         {clicked && (
@@ -104,9 +113,9 @@ const Dashboard = ({
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner1}
-              onPress={() => navigation.navigate("TripScedule")}
+              onPress={() => navigation.navigate("LocationScreen1")}
             >
-              <MaterialIcons name="date-range" size={44} color={colors.white} />
+              <MaterialIcons name="date-range" size={40} color={colors.white} />
               <Text style={styles.title}>Create Schedule</Text>
             </TouchableOpacity>
           </View>
@@ -116,7 +125,7 @@ const Dashboard = ({
               style={styles.inner2}
               onPress={() => navigation.navigate("BestTime")}
             >
-              <MaterialIcons name="schedule" size={44} color={colors.white} />
+              <MaterialIcons name="schedule" size={40} color={colors.white} />
               <Text style={styles.title}>Check Best Time to Visit</Text>
             </TouchableOpacity>
           </View>
@@ -124,11 +133,11 @@ const Dashboard = ({
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner3}
-              onPress={() => navigation.navigate("TourGuide")}
+              onPress={() => navigation.navigate("TourGuideScreen")}
             >
               <MaterialIcons
                 name="people-outline"
-                size={44}
+                size={40}
                 color={colors.white}
               />
               <Text style={styles.title}>Find a Tour Guide</Text>
@@ -138,12 +147,109 @@ const Dashboard = ({
           <View style={styles.box}>
             <TouchableOpacity
               style={styles.inner4}
-              onPress={() => navigation.navigate("NewsAlerts")}
+              onPress={() => navigation.navigate("CategoryNews")}
             >
-              <MaterialIcons name="list-alt" size={44} color={colors.white} />
+              <MaterialIcons name="list-alt" size={40} color={colors.white} />
               <Text style={styles.title}>Check News Alerts</Text>
             </TouchableOpacity>
           </View>
+        </View>
+      </View>
+
+      {/* Bottoma tabs */}
+      <View style={styles.footer}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={{ alignItems: "center" }}
+            onPress={() => navigation.navigate("Dashboard")}
+          >
+            <AntDesign name="home" color={"white"} size={22} />
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: colors.white,
+              }}
+            >
+              Home
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={{ alignItems: "center" }}
+            onPress={() => navigation.navigate("GoogleMap")}
+          >
+            <AntDesign name="search1" color={"white"} size={22} />
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: colors.white,
+              }}
+            >
+              Explore
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity style={{ alignItems: "center" }}>
+            <AntDesign name="hearto" color={"white"} size={22} />
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: colors.white,
+              }}
+            >
+              Home
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity style={{ alignItems: "center" }}>
+            <AntDesign name="user" color={"white"} size={22} />
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: colors.white,
+              }}
+            >
+              Home
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -159,16 +265,17 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    margin: 15,
+    margin: 25,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    width: "90%",
+    width: "100%",
+    marginTop: 30,
   },
   searchBar__unclicked: {
     padding: 10,
     flexDirection: "row",
-    width: "95%",
+    width: "100%",
     backgroundColor: "white",
     borderRadius: 15,
     alignItems: "center",
@@ -177,7 +284,7 @@ const styles = StyleSheet.create({
   searchBar__clicked: {
     padding: 10,
     flexDirection: "row",
-    width: "80%",
+    width: "100%",
     backgroundColor: "#d9dbda",
     borderRadius: 15,
     alignItems: "center",
@@ -194,44 +301,34 @@ const styles = StyleSheet.create({
   },
 
   negombo_img: {
-    width: 260,
-    height: 280,
+    width: 240,
+    height: 260,
     marginLeft: 20,
     margin: 10,
-  },
-
-  negombo_text: {
-    marginTop: 10,
-    fontSize: 20,
-    fontWeight: 600,
-    color: colors.primary,
   },
 
   location_icon: {
     color: colors.primary,
   },
 
-  negombo_text2: {
-    marginLeft: 5,
-    fontSize: 16,
-    color: colors.gray,
-  },
   topView2: {
-    height: "48%",
+    backgroundColor: colors.black,
+    height: "38%",
     justifyContent: "center",
     alignItems: "center",
   },
   boxContainer: {
-    width: "100%",
-    height: "100%",
+    flex: 2,
     backgroundColor: colors.white,
-    padding: 15,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 25,
     flexDirection: "row",
     flexWrap: "wrap",
   },
   box: {
     width: "50%",
-    height: "50%",
+    height: "55%",
     padding: 15,
   },
   inner1: {
@@ -265,10 +362,24 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 5,
     color: colors.white,
-    fontSize: 16,
+    fontSize: 14,
     // fontWeight: "bold",
     paddingHorizontal: 20,
     textAlign: "center",
+  },
+  footer: {
+    flexDirection: "row",
+    backgroundColor: colors.primary,
+    height: 50,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    marginLeft: 5,
+    marginRight: 5,
   },
 });
 

@@ -32,12 +32,12 @@ function WelcomeScreen({ navigation, onPress }) {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.topView3}>
+      {/* <View style={styles.topView3}>
         <Text style={styles.title}>Already have account? </Text>
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={() => navigation.navigate("Singin")}>
           <Text style={styles.subTitle}> Login Here</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </ImageBackground>
   );
 }
