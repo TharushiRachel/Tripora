@@ -148,6 +148,13 @@ const TourGuideScreen = ({navigation, onPress}) =>{
                 </View>
             </Modal>
 
+            <TouchableOpacity
+          style={styles.hire_btn}
+          onPress={() => navigation.navigate("Comments1")}
+        >
+          <Text style={styles.btnText}>View Comments</Text>
+        </TouchableOpacity>
+
         </View>
     )
 }

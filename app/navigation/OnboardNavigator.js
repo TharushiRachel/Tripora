@@ -24,6 +24,9 @@ import Preferences from "../screens/Preferences";
 import Language from "../screens/Language";
 import FTourGuide from "../screens/FTourGuide";
 import GTourGuide from "../screens/GTourGuide";
+import Comments1 from "../screens/Comments1";
+import Comments2 from "../screens/Comments2";
+import Comments3 from "../screens/Comments3";
 
 const config = {
   animation: "spring",
@@ -66,8 +69,9 @@ const OnboardNavigator = () => (
     <Stack.Screen name="Language" component={Language} />
     <Stack.Screen name="FTourGuide" component={FTourGuide} />
     <Stack.Screen name="GTourGuide" component={GTourGuide} />
-
-
+    <Stack.Screen name="Comments1" component={Comments1} />
+    <Stack.Screen name="Comments2" component={Comments2} />
+    <Stack.Screen name="Comments3" component={Comments3} />
 
   </Stack.Navigator>
 );

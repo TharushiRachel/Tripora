@@ -9,7 +9,8 @@ import {
     Pressable,
     Modal,
     Dimensions,
-    TextInput
+    TextInput,
+    SafeAreaView
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
@@ -58,19 +59,26 @@ const GTourGuide = ({navigation, onPress}) =>{
  
 
     return(
-        <View style={styles.body}>
+        <SafeAreaView style={styles.container}>
+        {/* <View style={styles.body}> */}
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Language")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
                 <Text style={styles.text1}>Tour Guide</Text>
                 
-            </View>
+            </View> */}
 
-            <Text style={styles.text6}>Recomended for you</Text><br></br>
+<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Language")}>
+            <AntDesign name="left" size={20} style={styles.back_btn}/>
+                </TouchableOpacity>
+                <Text style={styles.text11}> Tour Guide</Text>               
+      </View>  
 
+            <Text style={styles.text6}>Recomended for you</Text>
   
 
             <View style={styles.box1}>
@@ -88,6 +96,11 @@ const GTourGuide = ({navigation, onPress}) =>{
 
             <Text style={styles.text4}>MOBILE</Text>
             <Text style={styles.text5}>077-7605809</Text>
+
+            <Text style={styles.text4}>COST PER DAY</Text>
+            <Text style={styles.text5}>$20 - $40</Text>
+
+
 
 
 {/* <View style={styles.container}>
@@ -125,7 +138,13 @@ const GTourGuide = ({navigation, onPress}) =>{
              borderRadius="25"
              onPress={() => Alert.alert('Button with adjusted color pressed')}/> */}
 
-            <Pressable style={styles.hire_btn} onPress={toggleModalVisibility}> Add a Comment</Pressable>
+            {/* <Pressable style={styles.hire_btn} onPress={toggleModalVisibility}> Add a Comment</Pressable> */}
+            <TouchableOpacity
+          style={styles.hire_btn}
+          onPress={toggleModalVisibility}
+        >
+          <Text style={styles.btnText}>Add a Comment</Text>
+        </TouchableOpacity>
 
 
             <Modal animationType="slide" 
@@ -138,7 +157,6 @@ const GTourGuide = ({navigation, onPress}) =>{
                                    value={inputValue} style={styles.textInput} 
                                    onChangeText={(value) => setInputValue(value)} />
   
-                        {/** This button is responsible to close the modal */}
                         <Button title="ADD" onPress={() => navigation.navigate("Dashboard")} />
 
                         
@@ -146,18 +164,20 @@ const GTourGuide = ({navigation, onPress}) =>{
                 </View>
             </Modal>
 
-        </View>
+            <TouchableOpacity
+          style={styles.hire_btn}
+          onPress={() => navigation.navigate("Comments3")}
+        >
+          <Text style={styles.btnText}>View Comments</Text>
+        </TouchableOpacity>
+
+        {/* </View> */}
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    body : {
-        backgroundColor:'#FAF9F6',
-        // alignItems:'center',
-        // justifyContent:'center',
-        flex:1
-    },
-    
+
     box1:{
         backgroundColor: colors.primary,
         justifyContent:'center',
@@ -169,44 +189,29 @@ const styles = StyleSheet.create({
         
     },
 
-    text1: {
-        color: '#000000',
-        fontWeight:800,
-        marginRight:170,
-        marginTop:35,
-        fontSize:18,
-        marginBottom:40
-    },
-
-    back_btn: {
-        marginLeft:30,
-        marginTop:37,
-        color:colors.primary,
-    },
-
     text2:{
         textAlign: 'center',
         fontSize:24,
-        fontWeight:700
+        // fontWeight:700
     },
 
    text3:{
         fontSize:24,
-        fontWeight:700,
+        // fontWeight:700,
         marginLeft:40,
         marginTop:25
    },
 
    text4:{
         fontSize:16,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:40,
         marginTop:25
    },
 
    text5:{
         fontSize:16,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:40,
         color:'#A9A9A9',
         borderBottomColor: '#D9D9D9',
@@ -225,7 +230,7 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:18,
         marginTop:30,
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:20
         
     },
@@ -238,7 +243,7 @@ const styles = StyleSheet.create({
 
     text6:{
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         color:'#696969',
         marginLeft:20
     },
@@ -273,7 +278,143 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
 
-   
+    //new
+    textContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 5,
+      },
+      smallText: {
+        fontSize: 14,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        paddingLeft: 5,
+      },
+      view1: {
+        height: "50%",
+        justifyContent: "center",
+        alignItems: "center",
+        borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      text1: {
+        color: "#black",
+        fontSize: 18,
+        paddingHorizontal: 10,
+        textAlign: "center",
+        fontWeight: "bold",
+      },
+      
+      text11: {
+        color: '#000000',
+        // fontWeight:800,
+        marginRight:230,
+        marginTop:35,
+        fontSize:18,
+        marginBottom:40
+    },
+      text1Container: {
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      picContainer: {
+        width: "70%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10,
+      },
+      button: {
+        backgroundColor: colors.primary,
+        borderRadius: 25,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 15,
+        width: "85%",
+        marginVertical: 10
+      },
+      button2: {
+        backgroundColor: colors.gray,
+        borderRadius: 25,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 15,
+        width: "85%",
+        marginVertical: 10,
+        marginTop:100
+      },
+      btnText: {
+        color: colors.white,
+        fontSize: 13,
+        fontWeight: "bold",
+        textTransform: "uppercase",
+        textAlign: "center",
+      },
+      btnText2: {
+        color: colors.primary,
+        fontSize: 13,
+        fontWeight: "bold",
+        textTransform: "uppercase",
+        textAlign: "center",
+      },
+      view2: {
+        marginTop: 20,
+        height: "25%",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        marginLeft: 30,
+        marginRight: 50,
+        // borderTopWidth: 2,
+        // borderColor: colors.primary,
+      },
+      view3: {
+        height: "25%",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      view4: {
+        height: "15%",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        // borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      View3left: {
+        flex: 1,
+        width: "50%",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      view3right: {
+        flex: 1,
+        width: "50%",
+        alignItems: "flex-start",
+        justifyContent: "center",
+      },
+      back_btn: {
+        marginLeft:30,
+        marginTop:37,
+        color:colors.primary,
+    },
+    container:{
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+
+    button: {
+      backgroundColor: colors.primary,
+      borderRadius: 25,
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 15,
+      width: "85%",
+      marginVertical: 10
+    },
+    
     
 });
 
