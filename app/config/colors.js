@@ -10,4 +10,5 @@ export default {
   grey: '#dddedd',
   red: 'red',
   orange: '#f5a623',
+  secondary: '#e1e8e9',
 };

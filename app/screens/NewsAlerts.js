@@ -91,9 +91,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         
     },
-    heading:{
 
-    },
     author:{
         fontWeight: "bold",
         fontSize: 15

@@ -43,6 +43,8 @@ import SuggestedSchedule from "../screens/SuggestedSchedule";
 import Comments1 from "../screens/Comments1";
 import Comments2 from "../screens/Comments2";
 import Comments3 from "../screens/Comments3";
+import WeatherDetails from "../screens/WeatherDetails";
+import Local from "../screens/Local";
 
 const config = {
   animation: "spring",
@@ -130,8 +132,110 @@ const OnboardNavigator = () => (
     <Stack.Screen name="FindAGuide" component={FindAGuide} />
     <Stack.Screen name="TourGuide" component={TourGuide} />
     <Stack.Screen name="TripScedule" component={TripScedule} />
-    <Stack.Screen name="NewsAlerts" component={NewsAlerts} />
-    {/* <Stack.Screen name="CategoryNews" component={CategoryNews} /> */}
+    <Stack.Screen
+      name="LocationNews"
+      component={LocationNews}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Location Wise News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="GoogleMap"
+      component={GoogleMap}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "My Current location",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        //headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="NewsAlerts"
+      component={NewsAlerts}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Latest News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+       // headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="Businness"
+      component={Businness}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Businness News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+       // headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="Sports"
+      component={Sports}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Sports News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+       // headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="World"
+      component={World}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "World News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        //headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="Local"
+      component={Local}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Local News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+       headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
+    <Stack.Screen
+      name="WeatherDetails"
+      component={WeatherDetails}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Check Weather Details",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+       // headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+      />
     <Stack.Screen
       name="CategoryNews"
       component={CategoryNews}
@@ -145,11 +249,7 @@ const OnboardNavigator = () => (
         headerBackTitle: { backgroundColor: "#54D2C4" },
       }}
     />
-    <Stack.Screen name="LocationNews" component={LocationNews} />
-    <Stack.Screen name="GoogleMap" component={GoogleMap} />
-    <Stack.Screen name="Businness" component={Businness} />
-    <Stack.Screen name="Sports" component={Sports} />
-    <Stack.Screen name="World" component={World} />
+
     <Stack.Screen name="TourGuideRegister" component={TourGuideRegister} />
     <Stack.Screen name="TourGuideList" component={TourGuideList} />
     <Stack.Screen name="RegisterT" component={RegisterT} />
@@ -189,6 +289,12 @@ const OnboardNavigator = () => (
     <Stack.Screen name="Comments1" component={Comments1} />
     <Stack.Screen name="Comments2" component={Comments2} />
     <Stack.Screen name="Comments3" component={Comments3} />
+        {/* headerTitle: "Check News and Weather",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        //headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    /> */}
 
   </Stack.Navigator>
 );

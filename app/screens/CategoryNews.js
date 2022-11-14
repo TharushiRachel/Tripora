@@ -4,19 +4,23 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
   ActivityIndicator,
 } from "react-native";
 import colors from "../config/colors";
 import ItemPicker from "../components/ItemPicker";
 import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const locations = [
-  { label: "Businness News", value: 0 },
-  { label: "World News", value: 1 },
-  { label: "Tech News", value: 2 },
-  { label: "Sports News", value: 3 },
+  { label: "Businness", value: 0 },
+  { label: "World", value: 1 },
+  { label: "Local", value: 2 },
+  { label: "Sports", value: 3 },
 ];
-function CategoryNews({ navigation }) {
+
+function BestTime({ navigation }) {
   const [id, setId] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
@@ -45,35 +49,43 @@ function CategoryNews({ navigation }) {
         const msg2 = `${data.status}`;
         setMsg(msg);
         setMsg2(msg2);
-        // alert(msg);
-        // reset();
+
       })
       .catch((error) => alert(`Error: ${error.message}`));
   };
-  // Alternative places suggestion
-  const handleSubmit4 = (e) => {
-    e.preventDefault();
-    const params = {
-      id,
-      month,
-      day,
-      time,
-    };
-    axios
-      .post("https://tripora.herokuapp.com/locationsuggest", params)
-      .then((res) => {
-        const data = res.data.data;
-        const parameters = JSON.stringify(params);
-        const msg5 = `${data.best_location}`;
-        setMsg5(msg5);
-      })
-      .catch((error) => alert(`Error: ${error.message}`));
-  };
+
+const pressHadler = (id) => {
+ // console.log(id.label);
+  navigation.navigate(id.label);
+}
+// const categoryIcons = [
+//   <Icon name="flight" size={25} color={colors.primary} />,
+//   <Icon name="beach-access" size={25} color={colors.primary} />,
+//   <Icon name="near-me" size={25} color={colors.primary} />,
+//   <Icon name="place" size={25} color={colors.primary} />,
+// ];
+
+// const ListCategories = () => {
+//   return (
+//     <View style={styles.categoryContainer}>
+//       {categoryIcons.map((icon, index) => (
+//         <View key={index} style={styles.iconContainer}>
+//           {icon}
+//         </View>
+//       ))}
+//     </View>
+//   );
+// };
   return (
     <>
+        <ImageBackground
+      style={styles.background}
+      source={require("../assets/back6.jpg")}
+      resizeMode={"cover"}
+    >
       <View style={styles.view1}>
         <View style={styles.textContainer}></View>
-        {/* <View style={styles.picContainer}>
+        <View style={styles.picContainer}>
           <ItemPicker
             selectedItem={locations[id]}
             locations={locations}
@@ -81,61 +93,19 @@ function CategoryNews({ navigation }) {
             onSelectItem={(item) => setId(item.value)}
             items={locations}
             icon="apps"
-            placeholder="Select A Category"            
-          />
-          
-        </View> */}
+            placeholder="Select A Category"
+          />    
         <TouchableOpacity
           style={styles.button}
-          onPress={() => { navigation.navigate("Businness")}                         
-          }
-        >
-          <Text style={styles.btnText}>Business News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={() => { navigation.navigate("World")}                         
-          }
-        >
-          <Text style={styles.btnText2}>World News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => { navigation.navigate("Sports")}                         
-          }
-        >
-          <Text style={styles.btnText}>Sports News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={() => { navigation.navigate("World")}                         
-          }
-        >
-          <Text style={styles.btnText2}>Tech News</Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-          style={styles.button}
-          onPress={() => { {
-            if(id == 1){
-              navigation.navigate("Businness")
-            }
-            else if(id  == 2){
-              navigation.navigate("World")
-            }
-            else if(id == 3){
-              navigation.navigate("World")
-            }
-            else{
-              navigation.navigate("Sports")
-            }
-           }
-          }                         
-          }
-        >
-          <Text style={styles.btnText}>Check News Updates</Text>
-        </TouchableOpacity> */}
+                      onPress={() => pressHadler(locations[id])}
+                      >
+                      <Text style={styles.btnText}>Check News Updates</Text>
+        </TouchableOpacity>              
+        </View>
+       
       </View>
-            {/* <View style={styles.view3}>
+      {/* <ListCategories /> */}
+            <View style={styles.view3}>
                 <View style={styles.button}>
                       <TouchableOpacity
                         style={styles.button}
@@ -144,7 +114,7 @@ function CategoryNews({ navigation }) {
                         <Text style={styles.btnText}>View Location Wise News</Text>
                       </TouchableOpacity>
               </View>
-            </View> */}
+            </View>
             <View style={styles.view4}>
               <View style={styles.button}>
                     <TouchableOpacity
@@ -154,7 +124,18 @@ function CategoryNews({ navigation }) {
                       <Text style={styles.btnText}>View Latest News</Text>
                     </TouchableOpacity>
             </View>
+          </View>
+            <View style={styles.view4}>
+              <View style={styles.button}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => navigation.navigate("WeatherDetails")}
+                    >
+                      <Text style={styles.btnText}>View Weather Details</Text>
+                    </TouchableOpacity>
+            </View>
      </View>
+     </ImageBackground>
     </>
   );
 }
@@ -211,22 +192,6 @@ const styles = StyleSheet.create({
     width: "85%",
     marginVertical: 10,
   },
-  button2: {
-    backgroundColor: colors.gray,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 13,
-    width: "85%",
-    marginVertical: 10,
-  },
-  btnText2: {
-    color: colors.primary,
-    fontSize: 13,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    textAlign: "center",
-  },
   btnText: {
     color: colors.white,
     fontSize: 13,
@@ -258,5 +223,24 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderColor: colors.primary,
   },
+  background: {
+    flex: 1,
+    height: "110%",
+    width: "100%",
+  },
+  categoryContainer: {
+    marginTop: 60,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  iconContainer: {
+    height: 60,
+    width: 60,
+    backgroundColor: colors.secondary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
 });
-export default CategoryNews;
+export default BestTime;
