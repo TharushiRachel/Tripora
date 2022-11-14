@@ -30,12 +30,14 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://localhost:3000/tour-guide/633168f0bacc220c49e10bc8"
+    const url = "http://192.168.8.103:3000/tour-guide/633168f0bacc220c49e10bc8"
 
  useEffect(()=>{
    fetch(url)
    .then(response => response.json())
-   .then((json)=>setTourGuide(json))
+   .then((json)=>{
+    setTourGuide(json)
+  })
    .catch((error)=>console.log(error))
    .finally(()=> setLoading(false))
  },[])
@@ -99,8 +101,8 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 <View style={styles.container}>
       {
         loading ? <Text>Loading ...</Text>:
-        data.map((post)=>(
-          <View >
+        data.map((post, i)=>(
+          <View key={i}>
             <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>{post.username}</Text>

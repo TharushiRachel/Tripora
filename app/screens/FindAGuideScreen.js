@@ -22,12 +22,18 @@ const FindAGuideScreen =({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://localhost:3000/newtour-guide"
+    const url = "http://192.168.8.103:3000/newtour-guide"
 
  useEffect(()=>{
    fetch(url)
-   .then(response => response.json())
-   .then((json)=>setTourGuide(json))
+   .then(response =>
+    response.json()
+)
+
+   .then((json)=>{
+    setTourGuide(json.data)
+    // console.log(json)
+})
    .catch((error)=>console.log(error))
    .finally(()=> setLoading(false))
  },[])
@@ -60,9 +66,9 @@ const FindAGuideScreen =({navigation, onPress}) =>{
                     
             {
                 loading ? <Text>Loading ...</Text>:
-                data.map((post)=>{
+                data.map((post, i)=>{
                     return(
-                        <TouchableOpacity onPress={() => navigation.navigate("TourGuide")}>
+                        <TouchableOpacity key={i} onPress={() => navigation.navigate("TourGuide")}>
                         <View style={styles.item} >
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             

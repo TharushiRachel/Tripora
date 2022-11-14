@@ -120,7 +120,7 @@ app.get('/tour-guide',(req,res) =>{
     TourGuide.find({})
   .then(data =>{
       console.log(data)
-      res.send(data)
+      res.json({data})
   }).catch(err => {
     console.log(err)
 })
@@ -191,8 +191,9 @@ app.post('/newtour-guide',(req,res) =>{
 app.get('/newtour-guide',(req,res) =>{
     NewTourGuide.find({})
   .then(data =>{
-      console.log(data)
-      res.send(data)
+    //   console.log(data)
+    console.log("CALLED")
+      res.status(200).json({data})
   }).catch(err => {
     console.log(err)
 })
@@ -219,7 +220,7 @@ app.get('/comment',(req,res) =>{
     Comments.find({})
   .then(data =>{
       console.log(data)
-      res.send(data)
+      res.json(data)
   }).catch(err => {
     console.log(err)
 })

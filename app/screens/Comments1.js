@@ -26,7 +26,7 @@ const Comments1 = ({ navigation, onPress }) => {
     const [loading,setLoading] = useState(true)
 
     
-    const url = "http://localhost:3000/comment"
+    const url = "http://192.168.8.103:3000/comment"
 
  useEffect(()=>{
    fetch(url)
@@ -51,9 +51,9 @@ return(
                     
             {
                 loading ? <Text>Loading ...</Text>:
-                data.map((post)=>{
+                data.map((post, i)=>{
                     return(
-                        <TouchableOpacity onPress={() => navigation.navigate("GTourGuide")}>
+                        <TouchableOpacity key={i} onPress={() => navigation.navigate("GTourGuide")}>
                         <View style={styles.item} >
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                             
