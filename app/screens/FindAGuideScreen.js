@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
-    Pressable
+    Pressable,
+    SafeAreaView
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
@@ -39,7 +40,8 @@ const FindAGuideScreen =({navigation, onPress}) =>{
     // ])
 
     return(
-        <View style={styles.body}>
+        <SafeAreaView>
+            
             
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
@@ -81,7 +83,8 @@ const FindAGuideScreen =({navigation, onPress}) =>{
             }
             </TouchableOpacity>
             </ScrollView>
-        </View>
+            
+        </SafeAreaView>
     )
 }
 
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
     text:{
         color:'#000000',
         fontSize:18,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:5,
         
     },
@@ -120,13 +123,13 @@ const styles = StyleSheet.create({
     text2:{
         color:'#696969',
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         marginLeft:5
     },
 
     text1: {
         color: '#000000',
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:130,
         marginTop:35,
         fontSize:18,
@@ -174,7 +177,7 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:18,
         marginTop:0,
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:20,
         padding:5
         
