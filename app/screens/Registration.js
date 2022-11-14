@@ -29,40 +29,37 @@ const SignInScreen = ({ navigation, onPress }) => {
               
         <View style={styles.footer}>
         <View style={{flex:2,flexDirection:'column',backgroundColor:'#fff',paddingTop:8,paddingHorizontal:'3%'}} >
-            <div>
+          
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#ededed',width:'95%',borderRadius:10,height:60,paddingLeft:20}} >
                         <Icon name="user" size={22} color="#818181"/>
                         <TextInput style={styles.input} placeholder="  User Name" placeholderTextColor="#818181" />                      
                 </View>
-                <br></br>
-            </div>
-            <div>
+               
+            
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#ededed',width:'95%',borderRadius:10,height:60,paddingLeft:20}} >
                         <Icon name="envelope-o" size={22} color="#818181"/>
                         <TextInput style={styles.input} placeholder="  Your Email" placeholderTextColor="#818181" />
                 </View>
-                <br></br>
-            </div>
-            <div>
+                
+           
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#ededed',width:'95%',borderRadius:10,height:60,paddingLeft:20}} >
                         <Icon name="phone" size={22} color="#818181"/>
                         <TextInput style={styles.input} placeholder="  Mobile Number" placeholderTextColor="#818181" />
                 </View>              
-            </div>
-            <div>
+           
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#ededed',width:'95%',borderRadius:10,height:60,paddingLeft:20,marginTop:20}} >
                         <Icon name="lock" size={22} color="#818181" />
                         <TextInput style={styles.input} placeholder="  Password" secureTextEntry={true} placeholderTextColor="#818181" />
                 </View>
               
-            </div>
-            <div>
+            
+           
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#ededed',width:'95%',borderRadius:10,height:60,paddingLeft:20,marginTop:20}} >
                         <Icon name="lock" size={22} color="#818181" />
                         <TextInput style={styles.input} placeholder="  Confirm Password" secureTextEntry={true} placeholderTextColor="#818181" />
                 </View>
-                <br></br>
-            </div>
+               
+            
 
                 {/* <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("FindAGuide")}>
                 <Buttons  btn_text={"Sign Up"}/>
@@ -74,7 +71,7 @@ const SignInScreen = ({ navigation, onPress }) => {
                     </TouchableOpacity>
                 </View>
                 
-                <br/>
+               
                 <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-end',backgroundColor:'#fff',marginBottom:40}} >
                 <Text style={{fontFamily:'OpenSans-Medium',fontSize:17,color:'#818181'}} >Already have a account? </Text>
                 <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("SingIn")}>

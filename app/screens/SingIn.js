@@ -47,7 +47,7 @@ const SignInScreen = ({ navigation, onPress }) => {
                 </View>
                 <Buttons  btn_text={"Login"}/>     
             </View> 
-            <div>
+            
             <View style={{flexDirection:'column',width:'95%'}} >
             <Text style={{fontFamily:"OpenSans-Bold",textAlign:'center',color:'#818181',fontSize:20}} >Or</Text>
                     
@@ -62,10 +62,10 @@ const SignInScreen = ({ navigation, onPress }) => {
                         <Text style={{width:'80%',textAlign:'center',fontSize:16,fontFamily:'OpenSans-Medium'}} >Sign in with Facebook </Text>
                     </TouchableOpacity>
             </View>
-            <br></br>
-            </div> 
             
-            <div>
+           
+            
+           
             <View style={{flex:1,flexDirection:'row',justifyContent:'center',alignItems:'flex-end',backgroundColor:'#fff',marginBottom:40}} >
                 <Text style={{fontFamily:'OpenSans-Medium',fontSize:17,color:'#818181'}} >Don't have a account? </Text>
                 <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Registration")}>
@@ -77,7 +77,7 @@ const SignInScreen = ({ navigation, onPress }) => {
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("RegisterT")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333', justifyContent:'center'}} >Register as a Tour Guide</Text>
                 </TouchableOpacity>
-            </div>
+            
                      
         </View>     
         </View>      

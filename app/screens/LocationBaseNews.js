@@ -12,7 +12,7 @@ const NewsScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
     // const [data,setData] = useState([]);
     const [loading,setLoading] = useState(true)
 
- const url = "http://localhost:3000/"
+ const url = "http://172.28.19.206:3000/"
 
  useEffect(()=>{
    fetch(url)

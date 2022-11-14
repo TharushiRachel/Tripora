@@ -8,7 +8,7 @@ import colors from "../config/colors";
 import { Feather, Entypo } from "@expo/vector-icons"; 
 
 
-const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}) => {
+const Business = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}) => {
     const [items,setArticles] = useState([]);
     const getNews = () => {
         axios.get('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.newsfirst.lk%2Fcategory%2Fbusiness%2Ffeed%2F')
@@ -61,7 +61,7 @@ const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
     )
 }
 
-export default HomeScreen;
+export default Business;
 
 const styles = StyleSheet.create({
     container:{

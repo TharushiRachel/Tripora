@@ -21,25 +21,7 @@ const { width } = Dimensions.get("window");
 
 const IMAGENAME = require("../assets/guide1.png"); 
 
-const FTourGuide = ({navigation, onPress}) =>{
-    // const [data,setTourGuide] = useState([]);
-    // const [data,setData] = useState([]);
-    // const [loading,setLoading] = useState(true)
-
-    // const { onPress, title = 'Save' } = props;
-
-    // const url = "http://localhost:3000/tour-guide/633168f0bacc220c49e10bc8"
-    // const url = "http://127.0.0.1:1100/tour-guide"
-
-//  useEffect(()=>{
-//    fetch(url)
-//    .then(response => response.json())
-//    .then((json)=>setTourGuide(json))
-//    .catch((error)=>console.log(error))
-//    .finally(()=> setLoading(false))
-//  },[])
-
-
+const FTourGuide = ({navigation, onPress}) => {
 
      // This is to manage Modal State
      const [isModalVisible, setModalVisible] = useState(false);
@@ -69,15 +51,15 @@ const FTourGuide = ({navigation, onPress}) =>{
                 
             </View>
 
-            <Text style={styles.text6}>Recomended for you</Text><br></br>
+            <Text style={styles.text6}>Recomended for you</Text>
 
-  
+
 
             <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>Sisira</Text>
             </View>
-
+            <View>
             <Text style={styles.text3}>Account Info</Text>
 
             <Text style={styles.text4}>NAME</Text>
@@ -87,45 +69,8 @@ const FTourGuide = ({navigation, onPress}) =>{
             <Text style={styles.text5}>sisira.jayalath.sj@gmail.com</Text>
 
             <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>N-1580</Text>
-
-//comment open
-{/* <View style={styles.container}>
-      {
-        loading ? <Text>Loading ...</Text>:
-        data.map((post)=>(
-          <View >
-            <View style={styles.box1}>
-                <Image source={tourguide} style={styles.guide_img} />
-                <Text style={styles.text2}>{post.username}</Text>
-            </View>
-
-            <Text style={styles.text3}>Account Info</Text>
-
-            <Text style={styles.text4}>NAME</Text>
-            <Text style={styles.text5}>{post.fullname}</Text>
-
-            <Text style={styles.text4}>EMAIL</Text>
-            <Text style={styles.text5}>{post.email}</Text>
-
-            <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>{post.phone}</Text> */}
-
-            {/* <Text style={{fontSize:30, fontWeight: 'bold'}}>{post.name}</Text> */}
-             {/* <Text style={{fontSize:15, color:'blue'}} >{post.email}</Text> */}
-            {/* <Text style={{fontSize:15, color:'blue'}} >{post.phone}</Text> */}
-          {/* </View>
-        ))
-      }
-    </View> */}
-//comment close
-
-            {/* <Button title="HIRE" style={styles.hire_btn}
-             color="#54D2C4"
-             borderRadius="25"
-             onPress={() => Alert.alert('Button with adjusted color pressed')}/> */}
-
-            <Pressable style={styles.hire_btn} onPress={toggleModalVisibility}> Add a Comment</Pressable>
+            <Text style={styles.text5}>N-1580</Text></View>
+            <TouchableOpacity style={styles.hire_btn} onPress={toggleModalVisibility}> <Text>Add a Comment</Text></TouchableOpacity>
 
 
             <Modal animationType="slide" 
@@ -171,7 +116,7 @@ const styles = StyleSheet.create({
 
     text1: {
         color: '#000000',
-        fontWeight:800,
+        // fontWeight:"bold",
         marginRight:170,
         marginTop:35,
         fontSize:18,
@@ -187,26 +132,26 @@ const styles = StyleSheet.create({
     text2:{
         textAlign: 'center',
         fontSize:24,
-        fontWeight:700
+        // fontWeight:700
     },
 
    text3:{
         fontSize:24,
-        fontWeight:700,
+        // fontWeight:700,
         marginLeft:40,
         marginTop:25
    },
 
    text4:{
         fontSize:16,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:40,
         marginTop:25
    },
 
    text5:{
         fontSize:16,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:40,
         color:'#A9A9A9',
         borderBottomColor: '#D9D9D9',
@@ -225,7 +170,7 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:18,
         marginTop:30,
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:20
         
     },
@@ -238,7 +183,7 @@ const styles = StyleSheet.create({
 
     text6:{
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         color:'#696969',
         marginLeft:20
     },
@@ -274,7 +219,7 @@ const styles = StyleSheet.create({
     },
 
    
-    
+
 });
 
 export default FTourGuide;

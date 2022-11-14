@@ -2,273 +2,256 @@ import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
-  TextInput,
-  ActivityIndicator,
 } from "react-native";
-import colors from "../config/colors";
-import ItemPicker from "../components/ItemPicker";
-import { MaterialIcons } from "@expo/vector-icons";
+// import ItemPicker from "../components/ItemPicker";
 import axios from "axios";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+import ItemPicker from "../components/ItemPicker";
+import colors from "../config/colors";
 
 const locations = [
-  { label: "Jaffna", value: 1 },
- // { label: "test", value: 2 },
-  { label: "Mannar", value: 3 },
- // { label: "test", value: 4 },
- //{ label: "test", value: 5 },
-  { label: "Puttalam", value: 6 },
-  { label: "Kurunegala", value: 7 },
-  { label: "Gampaha", value: 8 },
-  { label: "Colombo", value: 9 },
-  { label: "Kalutara", value: 10 },
-  { label: "Anuradhapura", value: 11 },
-  { label: "Polonnaruwa", value: 12 },
-  { label: "Matale", value: 13 },
-  { label: "Kandy", value: 14 },
-  { label: "NuwaraEliya", value: 15 },
-  { label: "Kegalle", value: 16 },
-  { label: "Ratnapura", value: 17 },
-  { label: "Trincomalee", value: 18 },
-  { label: "Batticaloa", value: 19 },
-  { label: "Ampara", value: 20 },
-  { label: "Badulla", value: 21 },
-  { label: "Monaragala", value: 22 },
-  { label: "Hambantota", value: 23 },
-  { label: "Matara", value: 24 },
-  { label: "Galle", value: 25 },
- 
+  { label: "Nuwara Eliya", value: 1 },
+  { label: "Colombo", value: 2 },
+  { label: "Kandy", value: 3 },
+  { label: "Galle", value: 4 },
+  { label: "Jaffna", value: 5 },
 ];
 
+const dayTypes = [
+  { label: "1 to 3 days", value: 1 },
+  { label: "3 to 7 days", value: 2 },
+  { label: "1 to 2 weeks", value: 3 },
+  { label: "2 to 3 weeks", value: 4 },
+  { label: "3 to 4 weeks", value: 5 },
+];
 
-function TravelerRegi({ navigation }) {
-  const [id, setId] = useState("");
-  const [day, setDay] = useState("");
+function TravelerRegi() {
+  const [district, setDistrict] = useState(0);
+  const [days, setDays] = useState(0);
+  const [religious, setReligious] = useState(0);
+  const [historic, setHistoric] = useState(0);
+  const [parks, setParks] = useState(0);
+  const [falls, setFalls] = useState(0);
+  const [lakes, setLakes] = useState(0);
+  const [mountains, setMountains] = useState(0);
+  const [beaches, setBeaches] = useState(0);
+  const [other, setOther] = useState(0);
   const [msg, setMsg] = useState("");
-  const [Pref, setPref] = useState([]);
 
-  const [Types, setTypes] = useState([]);
-
-  const options = ['Religious Sites','Historic Sites','Beaches','Parks','Falls','Lakes','Markets','Other','Mountains'];
-
-  // Busy count prediction
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = {
-      id,
-      month,
-      day,
-      time,
+      district,
+      days,
+      religious,
+      historic,
+      parks,
+      falls,
+      lakes,
+      mountains,
+      beaches,
+      other,
     };
 
     axios
-      .post("https://tripora.herokuapp.com/prediction", params)
+      .post("https://triporaplan.herokuapp.com/plan", params)
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
-        // const msg = `Parameters: ${parameters}\nCrowd: ${data.prediction}%`;
-        const msg = `${data.prediction}%`;
-        const msg2 = `${data.status}`;
+        const msg = `locations: ${data.locations}`;
+        // setQuote(res.data.prediction);
         setMsg(msg);
-        setMsg2(msg2);
-        // alert(msg);
+        alert(msg);
         // reset();
       })
       .catch((error) => alert(`Error: ${error.message}`));
   };
 
-
-  const insertData = () => {
-    fetch('http://127.0.0.1:5000/add', {
-      method:'POST',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({title:title, body:body})
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      props.navigation.navigate('Home')
-    })
-    .catch(error => console.log(error))
-  }
-
-
-  function pickType(selectedType){
-    //const index = teaveltypes.findIndex(teaveltype => teaveltype === selectedType)
-
-    if (Types.includes(selectedType)) {
-      setTypes(Types.filter(teaveltype => teaveltype !== selectedType))
-      return;
-    }
-
-    setTypes(teaveltypes => teaveltypes.concat(selectedType))
-  }
-
   return (
-    <>
-      <View style={styles.view1}>
-        <View style={styles.textContainer}></View>
-        <View style={styles.picContainer}>
-          <ItemPicker
-            selectedItem={locations[id - 1]}
-            locations={locations}
-            value={id}
-            onSelectItem={(item) => setId(item.value)}
-            items={locations}
-            icon="apps"
-            placeholder="Select A Starting District"
-          />
+    <View style={styles.view1}>
+      <ItemPicker
+        selectedItem={locations[district - 1]}
+        locations={locations}
+        value={district}
+        onSelectItem={(item) => setDistrict(item.value)}
+        items={locations}
+        icon="apps"
+        placeholder="Select A Location"
+      />
 
-        <TextInput style={styles.input} placeholder="  Enter No of Days" placeholderTextColor="#818181" 
-          value={day}
-          onChangeText={(text) => setDay(text)}/>
+      <ItemPicker
+        selectedItem={dayTypes[days - 1]}
+        locations={dayTypes}
+        value={days}
+        onSelectItem={(item) => setDays(item.value)}
+        items={dayTypes}
+        icon="apps"
+        placeholder="Select A Date Range"
+      />
 
-
-        <View style={styles.container}>
-        <Text style={styles.title}>Select your preferred type of locetions</Text>
-
-        <View style={styles.options}>
-            {options.map(option => (
-                <View key={option} style={styles.traveltype}>
-                    <TouchableOpacity
-                      style={styles.checkBox}
-                      onPress={()=>pickType(option)}>
-                      {Types.includes(option) && (
-                        <Text style={styles.check}>✔️</Text>
-                    )}
-                    </TouchableOpacity>
-                    <Text style={styles.traveltypeName}>{option}</Text>
-            </View>
-            ))}
-            </View>
+      <View style={styles.boxes}>
+        <View style={styles.vcontainer}>
+          <Text>Religious</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="religious"
+              value={religious}
+              onChangeText={(text) => setReligious(text)}
+            />
+          </View>
         </View>
 
-
-
-
+        <View style={styles.vcontainer}>
+          <Text>Historic</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="historic"
+              value={historic}
+              onChangeText={(text) => setHistoric(text)}
+            />
+          </View>
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            insertData();
-          }}
-        >
-          <Text style={styles.btnText}>Check Now</Text>
-        </TouchableOpacity>
+
+        <View style={styles.vcontainer}>
+          <Text>Parks</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="parks"
+              value={parks}
+              onChangeText={(text) => setParks(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.vcontainer}>
+          <Text>Falls</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="falls"
+              value={falls}
+              onChangeText={(text) => setFalls(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.vcontainer}>
+          <Text>Lakes</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="lakes"
+              value={lakes}
+              onChangeText={(text) => setLakes(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.vcontainer}>
+          <Text>Mountains</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="mountains"
+              value={mountains}
+              onChangeText={(text) => setMountains(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.vcontainer}>
+          <Text>Beaches</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="beaches"
+              value={beaches}
+              onChangeText={(text) => setBeaches(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.vcontainer}>
+          <Text>Other</Text>
+          <View style={styles.inputview}>
+            <TextInput
+              label="other"
+              value={other}
+              onChangeText={(text) => setOther(text)}
+            />
+          </View>
+        </View>
+
+        <View style={styles.view3}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <Text style={styles.btnText}>View Suggested Locations</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </>
+    </View>
   );
 }
 
+export default TravelerRegi;
+
 const styles = StyleSheet.create({
-  textContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 5,
-  },
-
-  checkBox: {
-    width: 25,
-    height: 25,
-    borderWidth: 2,
-    borderColor: 'green',
-    marginRight :5,
-  },
-
   input: {
-    alignSelf: 'center',
-    fontSize: 16,
-    width: '70%',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-
-  check: {
-    alignSelf: 'center',
-  },
-
-  container: {
-    flex: 1,
-    justifycontent: 'center',
-    alignItems :'center',
-  },
-
-  options: {
-    alignSelf: 'flex-start',
-    marginLeft: 50,
-  },
-
-  traveltype: {
-    flexDirection: 'row',
-    marginVertical: 7,
-  },
-
-  traveltypeName: {
-    textTransform: 'capitalize',
-    fontSize: 16,
-  },
-
-  title: {
-    fontSize: 18,
-    fontWeight: '600',
-  },
-
-  smallText: {
-    fontSize: 14,
-    textTransform: "uppercase",
-    // fontWeight: "bold",
-    paddingLeft: 5,
-  },
-  smallText2: {
-    fontSize: 14,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    paddingLeft: 5,
-    color: "blue",
+    height: 1,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
   view1: {
-    height: "75%",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     borderTopWidth: 2,
     borderColor: colors.primary,
   },
-  text1: {
-    color: "#black",
+  inputview: {
+    padding: 2,
+    borderWidth: 1,
+    borderColor: colors.primary,
+  },
+  btnText: {
     fontSize: 18,
-    paddingHorizontal: 10,
+    letterSpacing: 1.5,
     textAlign: "center",
-    fontWeight: "bold",
-  },
-  text1Container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  picContainer: {
-    width: "80%",
-    justifyContent: "center",
-    alignItems: "center",
     marginTop: 10,
+    marginBottom: 10,
+    color: "white",
+  },
+  btn: {
+    backgroundColor: "green",
+    borderRadius: 10,
+    width: "50%",
+  },
+  view3: {
+    height: "20%",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
   button: {
     backgroundColor: colors.primary,
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    padding: 15,
+    padding: 5,
     width: "85%",
     marginVertical: 10,
   },
-  btnText: {
-    color: colors.white,
-    fontSize: 13,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    textAlign: "center",
+  vcontainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
   },
+  // boxes: {
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   flexDirection: "column",
+  // },
 });
-export default TravelerRegi;

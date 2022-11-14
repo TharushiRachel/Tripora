@@ -16,9 +16,7 @@ import BestTime from "../screens/BestTime";
 import SuggestedPlaces from "../screens/SuggestedPlaces";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
-<<<<<<< HEAD
-import Dashboard from "../screens/Dashboard";
-import FindAGuide from "../screens/FindAGuideScreen";
+  import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
 import TripScedule from "../screens/TripScedule";
 import NewsAlerts from "../components/Article";
@@ -36,11 +34,9 @@ import Preferences from "../screens/Preferences";
 import Language from "../screens/Language";
 import FTourGuide from "../screens/FTourGuide";
 import GTourGuide from "../screens/GTourGuide";
-=======
+import TravelerRegi from "../screens/TravelerRegi"
 import LocationScreen1 from "../screens/LocationScreen1";
-import HomeScreen from "../screens/HomeScreen";
-import DetailsScreen from "../screens/DetailsScreen";
->>>>>>> feature/uvindu
+import SuggestedSchedule from "../screens/SuggestedSchedule";
 
 const config = {
   animation: "spring",
@@ -69,7 +65,7 @@ const OnboardNavigator = () => (
     <Stack.Screen name="SlideScreen2" component={SlideScreen2} />
     <Stack.Screen name="SlideScreen3" component={SlideScreen3} />
     <Stack.Screen name="SlideScreen4" component={SlideScreen4} />
-    <Stack.Screen name="Dashboard" component={Dashboard} />
+    {/* <Stack.Screen name="Dashboard" component={Dashboard} /> */}
     <Stack.Screen
       name="BestTime"
       component={BestTime}
@@ -98,13 +94,25 @@ const OnboardNavigator = () => (
     />
     <Stack.Screen name="SingIn" component={SingIn} />
     <Stack.Screen name="Registration" component={Registration} />
-<<<<<<< HEAD
     <Stack.Screen name="Dashboard" component={Dashboard} />
     <Stack.Screen name="FindAGuide" component={FindAGuide} />
     <Stack.Screen name="TourGuide" component={TourGuide} />
     <Stack.Screen name="TripScedule" component={TripScedule} />
     <Stack.Screen name="NewsAlerts" component={NewsAlerts} />
-    <Stack.Screen name="CategoryNews" component={CategoryNews} />
+    {/* <Stack.Screen name="CategoryNews" component={CategoryNews} /> */}
+    <Stack.Screen
+      name="CategoryNews"
+      component={CategoryNews}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Category & Location Wise News",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
     <Stack.Screen name="LocationNews" component={LocationNews} />
     <Stack.Screen name="GoogleMap" component={GoogleMap} />
     <Stack.Screen name="Businness" component={Businness} />
@@ -117,13 +125,35 @@ const OnboardNavigator = () => (
     <Stack.Screen name="Language" component={Language} />
     <Stack.Screen name="FTourGuide" component={FTourGuide} />
     <Stack.Screen name="GTourGuide" component={GTourGuide} />
-
-
-=======
     <Stack.Screen name="LocationScreen1" component={LocationScreen1} />
-    <Stack.Screen name="HomeScreen" component={HomeScreen} />
-    <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
->>>>>>> feature/uvindu
+    <Stack.Screen
+      name="TravelerRegi"
+      component={TravelerRegi}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Plan Your Trip",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
+    <Stack.Screen
+      name="SuggestedSchedule"
+      component={SuggestedSchedule}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Plan Your Trip",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
+
+
 
   </Stack.Navigator>
 );

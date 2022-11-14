@@ -18,18 +18,17 @@ function LocationScreen1({ navigation, onPress }) {
       source={require("../assets/LocPic1.jpg")}>
       <View style={styles.details}>
         <Text style={{color: colors.white, fontSize: 35, fontWeight: 'bold'}}>
-          Discover
+          Let's Plan
         </Text>
         <Text style={{color: colors.white, fontSize: 35, fontWeight: 'bold'}}>
-          world with us
+          Your Trip !
         </Text>
         <Text style={{color: colors.white, lineHeight: 25, marginTop: 15}}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ut
-          sem non erat vehicula dignissim. Morbi eget congue ante, feugiat.
+          .........................
         </Text>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigation.navigate('HomeScreen')}>
+          onPress={() => navigation.navigate("TravelerRegi")}>
           <View style={styles.btn}>
             <Text style={{fontWeight: 'bold'}}>Get Started</Text>
           </View>
