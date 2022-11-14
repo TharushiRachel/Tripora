@@ -203,6 +203,7 @@ function BestTime({ navigation }) {
   const [msg3, setMsg3] = useState("");
   const [msg4, setMsg4] = useState("");
   const [msg5, setMsg5] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Busy count prediction
   const handleSubmit = (e) => {
@@ -295,6 +296,7 @@ function BestTime({ navigation }) {
 
   return (
     <>
+      {/* Getting inputs */}
       <View style={styles.view1}>
         <View style={styles.textContainer}></View>
         <View style={styles.picContainer}>
@@ -336,6 +338,8 @@ function BestTime({ navigation }) {
             placeholder="Choose Time"
           />
         </View>
+
+        {/* Calling methods */}
         <TouchableOpacity
           style={styles.button}
           onPress={(e) => {
@@ -349,7 +353,9 @@ function BestTime({ navigation }) {
         </TouchableOpacity>
       </View>
 
+      {/* Displaying results according to given inputs */}
       <View style={styles.view2}>
+        {/* Displayng Busy count */}
         <View style={styles.textContainer}>
           <MaterialIcons
             name="people-outline"
@@ -357,18 +363,33 @@ function BestTime({ navigation }) {
             color={colors.primary}
           />
           <Text style={styles.smallText}>Crowd - </Text>
-          <Text style={styles.smallText2}>{msg}</Text>
+
+          {loading ? (
+            <ActivityIndicator
+              visible={loading}
+              textContent={"Loading..."}
+              textStyle={styles.spinnerTextStyle}
+            />
+          ) : (
+            <Text style={styles.smallText2}>{msg}</Text>
+          )}
         </View>
+
+        {/* Displayng Status */}
         <View style={styles.textContainer}>
           <MaterialIcons name="lock-open" size={17} color={colors.primary} />
           <Text style={styles.smallText}>Status - </Text>
           <Text style={styles.smallText2}>{msg2}</Text>
         </View>
+
+        {/* Displayng Time */}
         <View style={styles.textContainer}>
           <MaterialIcons name="access-time" size={17} color={colors.primary} />
           <Text style={styles.smallText}>Best Time To Visit - </Text>
           <Text style={styles.smallText2}>{msg3}</Text>
         </View>
+
+        {/* Displayng Months */}
         <View style={styles.textContainer}>
           <MaterialIcons name="date-range" size={17} color={colors.primary} />
           <Text style={styles.smallText}>Best Months To Visit - </Text>
@@ -376,6 +397,7 @@ function BestTime({ navigation }) {
         </View>
       </View>
 
+      {/* Displayng locations on the next screen */}
       <View style={styles.view3}>
         <TouchableOpacity
           style={styles.button}
@@ -465,6 +487,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderTopWidth: 2,
     borderColor: colors.primary,
+  },
+  spinnerTextStyle: {
+    color: "#FFF",
   },
   // View3left: {
   //   flex: 1,

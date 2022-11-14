@@ -16,8 +16,11 @@ import BestTime from "../screens/BestTime";
 import SuggestedPlaces from "../screens/SuggestedPlaces";
 import SingIn from "../screens/SingIn";
 import Registration from "../screens/Registration";
-  import FindAGuide from "../screens/FindAGuideScreen";
+import FindAGuide from "../screens/FindAGuideScreen";
 import TourGuide from "../screens/TourGuideScreen";
+import SuggestedPlaces2 from "../screens/SuggestedPlaces2";
+import PlaceDetails from "../screens/PlaceDetails";
+import TourGuideScreen from "../screens/TourGuideScreen";
 import TripScedule from "../screens/TripScedule";
 import NewsAlerts from "../components/Article";
 import LocationNews from "../screens/LocationBaseNews";
@@ -90,6 +93,32 @@ const OnboardNavigator = () => (
         headerTintColor: "black",
         headerTitleAlign: "center",
         headerTitle: "Suggested locations",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
+    <Stack.Screen
+      name="SuggestedPlaces2"
+      component={SuggestedPlaces2}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "Suggested locations",
+        headerStatusBarHeight: 20,
+        headerTitleStyle: { fontSize: 18 },
+        headerBackTitle: { backgroundColor: "#54D2C4" },
+      }}
+    />
+    <Stack.Screen
+      name="PlaceDetails"
+      component={PlaceDetails}
+      options={{
+        headerShown: true,
+        headerTintColor: "black",
+        headerTitleAlign: "center",
+        headerTitle: "LocationDetails",
         headerStatusBarHeight: 20,
         headerTitleStyle: { fontSize: 18 },
         headerBackTitle: { backgroundColor: "#54D2C4" },
