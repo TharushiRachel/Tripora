@@ -8,11 +8,14 @@ const NewsAtricle = mongoose.model("newsatricle")
 // require("./NewsModel")
 require("./TourGuideModel")
 require("./TouristModel")
+require("./NewTourGuideModel")
+require("./Comments")
 
 // const NewsAtricle = mongoose.model("newsatricle")
 const TourGuide = mongoose.model("tourguide")
 const Tourist = mongoose.model("tourist")
-
+const NewTourGuide = mongoose.model("newtourguide")
+const Comments = mongoose.model("comments")
 
 app.use(bodyParser.json())
 app.use(function (req, res, next) {
@@ -160,6 +163,68 @@ app.post('/tourist/preferences',(req,res) =>{
         console.log(err)
     })
 })
+
+
+//Tour Guide New
+app.post('/newtour-guide',(req,res) =>{
+    const newtourguide = new NewTourGuide({
+        name : req.body.name,
+        alias:req.body.alias,
+        email : req.body.email,
+        phone : req.body.phone, 
+        licenseNo : req.body.licenseNo,
+        language:req.body.language,
+        type: req.body.type,
+        description: req.body.description
+        
+    })
+    newtourguide.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+
+app.get('/newtour-guide',(req,res) =>{
+    NewTourGuide.find({})
+  .then(data =>{
+      console.log(data)
+      res.send(data)
+  }).catch(err => {
+    console.log(err)
+})
+})
+
+//Comment
+app.post('/comment',(req,res) =>{
+    const comments = new Comments({
+        name : req.body.name,
+        date : req.body.date,
+        review : req.body.review
+        
+    })
+    comments.save()
+    .then(data =>{
+        console.log(data)
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+app.get('/comment',(req,res) =>{
+    Comments.find({})
+  .then(data =>{
+      console.log(data)
+      res.send(data)
+  }).catch(err => {
+    console.log(err)
+})
+})
+
 
 
 

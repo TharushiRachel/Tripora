@@ -9,11 +9,12 @@ import {
     Pressable,
     Modal,
     Dimensions,
-    TextInput
+    TextInput,
+    SafeAreaView
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
-import tourguide from '../assets/guide1.png'; 
+import tourguide from '../assets/guideavatar.jpg'; 
 import PrevSlideButton from "../components/PrevSlideButton";
 
 const { width } = Dimensions.get("window");
@@ -40,26 +41,25 @@ const FTourGuide = ({navigation, onPress}) => {
  
 
     return(
-        <View style={styles.body}>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
+        <SafeAreaView style={styles.container}>
+        
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Language")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
-                <Text style={styles.text1}>Tour Guide</Text>
-                
-            </View>
+                <Text style={styles.text11}> Tour Guide</Text>               
+      </View>  
 
             <Text style={styles.text6}>Recomended for you</Text>
-
 
 
             <View style={styles.box1}>
                 <Image source={tourguide} style={styles.guide_img} />
                 <Text style={styles.text2}>Sisira</Text>
             </View>
-            <View>
+            {/* <View> */}
             <Text style={styles.text3}>Account Info</Text>
 
             <Text style={styles.text4}>NAME</Text>
@@ -69,8 +69,53 @@ const FTourGuide = ({navigation, onPress}) => {
             <Text style={styles.text5}>sisira.jayalath.sj@gmail.com</Text>
 
             <Text style={styles.text4}>MOBILE</Text>
-            <Text style={styles.text5}>N-1580</Text></View>
-            <TouchableOpacity style={styles.hire_btn} onPress={toggleModalVisibility}> <Text>Add a Comment</Text></TouchableOpacity>
+            <Text style={styles.text5}>N-1580</Text>
+
+            <Text style={styles.text4}>COST PER DAY</Text>
+            <Text style={styles.text5}>$20 - $40</Text>
+
+
+{/* <View style={styles.container}>
+      {
+        loading ? <Text>Loading ...</Text>:
+        data.map((post)=>(
+          <View >
+            <View style={styles.box1}>
+                <Image source={tourguide} style={styles.guide_img} />
+                <Text style={styles.text2}>{post.username}</Text>
+            </View>
+
+            <Text style={styles.text3}>Account Info</Text>
+
+            <Text style={styles.text4}>NAME</Text>
+            <Text style={styles.text5}>{post.fullname}</Text>
+
+            <Text style={styles.text4}>EMAIL</Text>
+            <Text style={styles.text5}>{post.email}</Text>
+
+            <Text style={styles.text4}>MOBILE</Text>
+            <Text style={styles.text5}>{post.phone}</Text> */}
+
+            {/* <Text style={{fontSize:30, fontWeight: 'bold'}}>{post.name}</Text> */}
+             {/* <Text style={{fontSize:15, color:'blue'}} >{post.email}</Text> */}
+            {/* <Text style={{fontSize:15, color:'blue'}} >{post.phone}</Text> */}
+          {/* </View>
+        ))
+      }
+    </View> */}
+
+
+            {/* <Button title="HIRE" style={styles.hire_btn}
+             color="#54D2C4"
+             borderRadius="25"
+             onPress={() => Alert.alert('Button with adjusted color pressed')}/> */}
+
+            <TouchableOpacity
+          style={styles.hire_btn}
+          onPress={toggleModalVisibility}
+        >
+          <Text style={styles.btnText}>Add a Comment</Text>
+        </TouchableOpacity>
 
 
             <Modal animationType="slide" 
@@ -90,19 +135,19 @@ const FTourGuide = ({navigation, onPress}) => {
                     </View>
                 </View>
             </Modal>
-
-        </View>
+            
+            <TouchableOpacity
+          style={styles.hire_btn}
+          onPress={() => navigation.navigate("Comments2")}
+        >
+          <Text style={styles.btnText}>View Comments</Text>
+        </TouchableOpacity>
+        
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
-    body : {
-        backgroundColor:'#FAF9F6',
-        // alignItems:'center',
-        // justifyContent:'center',
-        flex:1
-    },
-    
     box1:{
         backgroundColor: colors.primary,
         justifyContent:'center',
@@ -112,21 +157,6 @@ const styles = StyleSheet.create({
         height:200,
         padding:15,
         
-    },
-
-    text1: {
-        color: '#000000',
-        // fontWeight:"bold",
-        marginRight:170,
-        marginTop:35,
-        fontSize:18,
-        marginBottom:40
-    },
-
-    back_btn: {
-        marginLeft:30,
-        marginTop:37,
-        color:colors.primary,
     },
 
     text2:{
@@ -218,8 +248,134 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
 
-   
-
+    //new
+    textContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 5,
+      },
+      smallText: {
+        fontSize: 14,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        paddingLeft: 5,
+      },
+      view1: {
+        height: "50%",
+        justifyContent: "center",
+        alignItems: "center",
+        borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      text1: {
+        color: "#black",
+        fontSize: 18,
+        paddingHorizontal: 10,
+        textAlign: "center",
+        fontWeight: "bold",
+      },
+      
+      text11: {
+        color: '#000000',
+        // fontWeight:800,
+        marginRight:230,
+        marginTop:35,
+        fontSize:18,
+        marginBottom:40
+    },
+      text1Container: {
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      picContainer: {
+        width: "70%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10,
+      },
+      button: {
+        backgroundColor: colors.primary,
+        borderRadius: 25,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 15,
+        width: "85%",
+        marginVertical: 10
+      },
+      button2: {
+        backgroundColor: colors.gray,
+        borderRadius: 25,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 15,
+        width: "85%",
+        marginVertical: 10,
+        marginTop:100
+      },
+      btnText: {
+        color: colors.white,
+        fontSize: 13,
+        fontWeight: "bold",
+        textTransform: "uppercase",
+        textAlign: "center",
+      },
+      btnText2: {
+        color: colors.primary,
+        fontSize: 13,
+        fontWeight: "bold",
+        textTransform: "uppercase",
+        textAlign: "center",
+      },
+      view2: {
+        marginTop: 20,
+        height: "25%",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        marginLeft: 30,
+        marginRight: 50,
+        // borderTopWidth: 2,
+        // borderColor: colors.primary,
+      },
+      view3: {
+        height: "25%",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      view4: {
+        height: "15%",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        // borderTopWidth: 2,
+        borderColor: colors.primary,
+      },
+      View3left: {
+        flex: 1,
+        width: "50%",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      view3right: {
+        flex: 1,
+        width: "50%",
+        alignItems: "flex-start",
+        justifyContent: "center",
+      },
+      back_btn: {
+        marginLeft:30,
+        marginTop:37,
+        color:colors.primary,
+    },
+    container:{
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    
+    
 });
 
 export default FTourGuide;

@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
-    Pressable
+    Pressable,
+    SafeAreaView
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import colors from "../config/colors";
@@ -21,7 +22,7 @@ const FindAGuideScreen =({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://localhost:3000/tour-guide"
+    const url = "http://localhost:3000/newtour-guide"
 
  useEffect(()=>{
    fetch(url)
@@ -39,16 +40,20 @@ const FindAGuideScreen =({navigation, onPress}) =>{
     // ])
 
     return(
-        <View style={styles.body}>
+        <SafeAreaView>
+            
             
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
                 <AntDesign name="left" size={20} style={styles.back_btn} />
+                </TouchableOpacity>
                 <Text style={styles.text1}>Find a Tour Guide</Text>
+                
             </View>
 
-            <TouchableOpacity style={styles.hire_btn} onPress={() => navigation.navigate("RegisterT")}>
+            {/* <TouchableOpacity style={styles.hire_btn} onPress={() => navigation.navigate("RegisterT")}>
                 <Text style={{fontSize:18,fontFamily:'OpenSans-SemiBold',color:'#333', justifyContent:'center'}} >Add New Guide</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
             <ScrollView>
                 <TouchableOpacity  onPress={() => navigation.navigate("TourGuideScreen")}>
@@ -65,8 +70,9 @@ const FindAGuideScreen =({navigation, onPress}) =>{
                                     <Image source={guide1} style={styles.guide_img} />
                                 </View>
                                 <View style={styles.text_view}>
-                                    <Text style={styles.text}>{post.username}</Text>
-                                    <Text style={styles.text2}>{post.description}</Text>
+                                    <Text style={styles.text}>{post.name}</Text>
+                                    <Text style={styles.text2}>{post.language}</Text>
+                                    <Text style={styles.text2}>{post.phone}</Text>
                                 </View>
                                 
                             </View>
@@ -77,7 +83,8 @@ const FindAGuideScreen =({navigation, onPress}) =>{
             }
             </TouchableOpacity>
             </ScrollView>
-        </View>
+            
+        </SafeAreaView>
     )
 }
 
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
     text:{
         color:'#000000',
         fontSize:18,
-        fontWeight:600,
+        // fontWeight:600,
         marginLeft:5,
         
     },
@@ -116,13 +123,13 @@ const styles = StyleSheet.create({
     text2:{
         color:'#696969',
         fontSize:16,
-        fontWeight:400,
+        // fontWeight:400,
         marginLeft:5
     },
 
     text1: {
         color: '#000000',
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:130,
         marginTop:35,
         fontSize:18,
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:18,
         marginTop:0,
-        fontWeight:800,
+        // fontWeight:800,
         marginRight:20,
         padding:5
         

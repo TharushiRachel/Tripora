@@ -22,6 +22,23 @@ import { RadioButton } from 'react-native-paper';
 const Preferences = ({ navigation, onPress }) => {
 
     const [checked, setChecked] = React.useState('first');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const params = {
+          language
+        };
+    
+        axios
+          .post("https://localhost:3000/newtour-guide", params)
+          .then((res) => {
+            const data = res.data.data;
+            const parameters = JSON.stringify(params);
+            const msg = `${data.tourguide}%`;
+            setMsg(msg);
+          })
+          .catch((error) => alert(`Error: ${error.message}`));
+      };
     
 
     return (
