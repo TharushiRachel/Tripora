@@ -22,7 +22,7 @@ const FindAGuideScreen =({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://192.168.8.103:3000/newtour-guide"
+    const url = "http://192.168.1.9:3000/newtour-guide"
 
  useEffect(()=>{
    fetch(url)

@@ -26,7 +26,7 @@ const Comments1 = ({ navigation, onPress }) => {
     const [loading,setLoading] = useState(true)
 
     
-    const url = "http://192.168.8.103:3000/comment"
+    const url = "http://192.168.1.9:3000/comment"
 
  useEffect(()=>{
    fetch(url)

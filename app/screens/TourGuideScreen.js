@@ -30,7 +30,7 @@ const TourGuideScreen = ({navigation, onPress}) =>{
 
     // const { onPress, title = 'Save' } = props;
 
-    const url = "http://192.168.8.103:3000/tour-guide/633168f0bacc220c49e10bc8"
+    const url = "http://192.168.1.9:3000/tour-guide/633168f0bacc220c49e10bc8"
 
  useEffect(()=>{
    fetch(url)
