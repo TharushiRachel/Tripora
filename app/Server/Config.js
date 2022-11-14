@@ -75,7 +75,7 @@ app.get('/',(req,res) =>{
     NewsAtricle.find({})
   .then(data =>{
       console.log(data)
-      res.send(data)
+      res.json(data)
   }).catch(err => {
     console.log(err)
 })

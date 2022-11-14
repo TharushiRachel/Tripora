@@ -4,156 +4,139 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
   ActivityIndicator,
-  SafeAreaView,
 } from "react-native";
 import colors from "../config/colors";
 import ItemPicker from "../components/ItemPicker";
 import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
-import { AntDesign } from '@expo/vector-icons'; 
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const locations = [
-  { label: "Businness News", value: 1 },
-  { label: "Politic News", value: 2 },
-  { label: "Tech News", value: 3 },
-  { label: "Sports News", value: 4 },
-  { label: "General News", value: 5 },
+  { label: "Businness", value: 0 },
+  { label: "World", value: 1 },
+  { label: "Local", value: 2 },
+  { label: "Sports", value: 3 },
 ];
-
-const months = [
-  { label: "January", value: 1 },
-  { label: "Feburary", value: 2 },
-  { label: "March", value: 3 },
-  { label: "April", value: 4 },
-  { label: "May", value: 5 },
-  { label: "June", value: 6 },
-  { label: "July", value: 7 },
-  { label: "August", value: 8 },
-  { label: "September", value: 9 },
-  { label: "October", value: 10 },
-  { label: "November", value: 11 },
-  { label: "December", value: 12 },
-  { label: "", value: 13 },
-];
-
-
-
-
 
 function BestTime({ navigation }) {
-  const [category, setId] = useState("");
+  const [id, setId] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [time, setTime] = useState("");
   const [msg, setMsg] = useState("");
   const [msg2, setMsg2] = useState("");
   const [msg3, setMsg3] = useState("");
   const [msg4, setMsg4] = useState("");
+  const [msg5, setMsg5] = useState([]);
 
-  // Busy count prediction
+  //predic news baseed on category
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = {
-      category,
+      id,
+      month,
+      day,
+      time,
     };
 
     axios
-      .post("https://tripora2.herokuapp.com/news", params)
+      .post("https://tripora.herokuapp.com/news", params)
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
-        // const msg = `Parameters: ${parameters}\nCrowd: ${data.prediction}%`;
-        const msg = `${data.news}%`;
-        // const msg2 = `${data.status}`;
+        const msg = `${data.prediction}%`;
+        const msg2 = `${data.status}`;
         setMsg(msg);
-        // setMsg2(msg2);
-        alert(msg);
-        // reset();
+        setMsg2(msg2);
+
       })
       .catch((error) => alert(`Error: ${error.message}`));
   };
 
+const pressHadler = (id) => {
+ // console.log(id.label);
+  navigation.navigate(id.label);
+}
+// const categoryIcons = [
+//   <Icon name="flight" size={25} color={colors.primary} />,
+//   <Icon name="beach-access" size={25} color={colors.primary} />,
+//   <Icon name="near-me" size={25} color={colors.primary} />,
+//   <Icon name="place" size={25} color={colors.primary} />,
+// ];
 
-
-
-
+// const ListCategories = () => {
+//   return (
+//     <View style={styles.categoryContainer}>
+//       {categoryIcons.map((icon, index) => (
+//         <View key={index} style={styles.iconContainer}>
+//           {icon}
+//         </View>
+//       ))}
+//     </View>
+//   );
+// };
   return (
     <>
-     <SafeAreaView style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("Dashboard")}>
-            <AntDesign name="left" size={20} style={styles.back_btn}/>
-                </TouchableOpacity>
-                <Text style={styles.text11}> Predict News Details!!</Text>               
-      </View>   
+        <ImageBackground
+      style={styles.background}
+      source={require("../assets/back6.jpg")}
+      resizeMode={"cover"}
+    >
       <View style={styles.view1}>
-        <View style={styles.textContainer}>
-          {/* <Text style={styles.text1}>
-            Check the peak times on the day you want to travel
-          </Text> */}
+        <View style={styles.textContainer}></View>
+        <View style={styles.picContainer}>
+          <ItemPicker
+            selectedItem={locations[id]}
+            locations={locations}
+            value={id}
+            onSelectItem={(item) => setId(item.value)}
+            items={locations}
+            icon="apps"
+            placeholder="Select A Category"
+          />    
+        <TouchableOpacity
+          style={styles.button}
+                      onPress={() => pressHadler(locations[id])}
+                      >
+                      <Text style={styles.btnText}>Check News Updates</Text>
+        </TouchableOpacity>              
         </View>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Businness")}
-        >
-          <Text style={styles.btnText}>Businness News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={() => navigation.navigate("Sports")}
-        >
-          <Text style={styles.btnText2}>Sports News</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("World")}
-        >
-          <Text style={styles.btnText}>World News</Text> 
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button2}
-          onPress={() => navigation.navigate("World")}
-        >
-          <Text style={styles.btnText2}>Entertainment News</Text>
-        </TouchableOpacity>
+       
       </View>
-
-      <View style={styles.view3}>
-      <View style={styles.button}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("LocationNews")}
-            >
-              <Text style={styles.btnText}>View Location Wise News</Text>
-            </TouchableOpacity>
-     </View>
-     </View>
-     <View style={styles.view4}>
-      <View style={styles.button}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("NewsAlerts")}
-            >
-              <Text style={styles.btnText}>View Daily News</Text>
-            </TouchableOpacity>
-     </View>
-     </View>
-      {/* <View style={styles.view3}>
-     
-        <View style={styles.View3left}>
-      
-        </View> */}
-{/* 
-        <View style={styles.view3right}>
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigation.navigate("SuggestedPlaces")}
-            >
-              <Text style={styles.btnText}>View Suggestions</Text>
-            </TouchableOpacity>
+      {/* <ListCategories /> */}
+            <View style={styles.view3}>
+                <View style={styles.button}>
+                      <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => navigation.navigate("LocationNews")}
+                      >
+                        <Text style={styles.btnText}>View Location Wise News</Text>
+                      </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.view4}>
+              <View style={styles.button}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => navigation.navigate("NewsAlerts")}
+                    >
+                      <Text style={styles.btnText}>View Latest News</Text>
+                    </TouchableOpacity>
+            </View>
           </View>
-        </View> */}
-      {/* </View> */}
-      </SafeAreaView>
+            <View style={styles.view4}>
+              <View style={styles.button}>
+                    <TouchableOpacity
+                      style={styles.button}
+                      onPress={() => navigation.navigate("WeatherDetails")}
+                    >
+                      <Text style={styles.btnText}>View Weather Details</Text>
+                    </TouchableOpacity>
+            </View>
+     </View>
+     </ImageBackground>
     </>
   );
 }
@@ -168,11 +151,18 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 14,
     textTransform: "uppercase",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     paddingLeft: 5,
   },
+  smallText2: {
+    fontSize: 14,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    paddingLeft: 5,
+    color: "blue",
+  },
   view1: {
-    height: "50%",
+    height: "55%",
     justifyContent: "center",
     alignItems: "center",
     borderTopWidth: 2,
@@ -185,15 +175,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
   },
-  
-  text11: {
-    color: '#000000',
-    // fontWeight:800,
-    marginRight:230,
-    marginTop:35,
-    fontSize:18,
-    marginBottom:40
-},
   text1Container: {
     alignItems: "center",
     justifyContent: "center",
@@ -213,24 +194,8 @@ const styles = StyleSheet.create({
     width: "85%",
     marginVertical: 10,
   },
-  button2: {
-    backgroundColor: colors.gray,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-    width: "85%",
-    marginVertical: 10,
-  },
   btnText: {
     color: colors.white,
-    fontSize: 13,
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    textAlign: "center",
-  },
-  btnText2: {
-    color: colors.primary,
     fontSize: 13,
     fontWeight: "bold",
     textTransform: "uppercase",
@@ -243,11 +208,9 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginLeft: 30,
     marginRight: 50,
-    // borderTopWidth: 2,
-    // borderColor: colors.primary,
   },
   view3: {
-    height: "25%",
+    height: "20%",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
@@ -262,26 +225,24 @@ const styles = StyleSheet.create({
     // borderTopWidth: 2,
     borderColor: colors.primary,
   },
-  View3left: {
+  background: {
     flex: 1,
-    width: "50%",
-    alignItems: "center",
-    justifyContent: "center",
+    height: "110%",
+    width: "100%",
   },
-  view3right: {
-    flex: 1,
-    width: "50%",
-    alignItems: "flex-start",
-    justifyContent: "center",
+  categoryContainer: {
+    marginTop: 60,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  back_btn: {
-    marginLeft:30,
-    marginTop:37,
-    color:colors.primary,
-},
-container:{
-  flex: 1,
-  backgroundColor: '#fff',
-},
+  iconContainer: {
+    height: 60,
+    width: 60,
+    backgroundColor: colors.secondary,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
 });
 export default BestTime;

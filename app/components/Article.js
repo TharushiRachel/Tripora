@@ -30,15 +30,7 @@ const HomeScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
     },[]);
 
     return(
-        <SafeAreaView style={styles.container}>
-             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("CategoryNews")}>
-            <AntDesign name="left" size={20} style={styles.back_btn}/>
-                </TouchableOpacity>
-                <Text style={styles.text1}>All News!!</Text>               
-            </View>      
-            
-
+        <SafeAreaView style={styles.container}>                
             <Text style={styles.text2}>News Notifications</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}></View>
             <FlatList

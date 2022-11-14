@@ -6,10 +6,10 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from "../config/colors";
 import { Feather, Entypo } from "@expo/vector-icons"; 
 
-// function HomeScreen(navigation, onPress){
+//function HomeScreen(navigation, onPress){
 const NewsScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}) => {
     const [items,setArticles] = useState([]);
-    // const [data,setData] = useState([]);
+    //const [data,setData] = useState([]);
     const [loading,setLoading] = useState(true)
 
  const url = "http://localhost:3000/"
@@ -28,10 +28,8 @@ const NewsScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
             <TouchableOpacity style={styles.bottomContainer} onPress={() => navigation.navigate("CategoryNews")}>
             <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
-                <Text style={styles.text1}>Alerts!!</Text>               
+                <Text style={styles.text1}>Location Wise News!!</Text>               
             </View>      
-            
-
             <Text style={styles.text2}>News Notifications</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}></View>
                     {
@@ -47,10 +45,7 @@ const NewsScreen = ({navigation, onPress,clicked, searchPhrase, setSearchPhrase}
                     url={post.source}
                 />
                 ))
-            }
-          
-
-       
+            }    
         </SafeAreaView>
     )
 }

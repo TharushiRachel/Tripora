@@ -9,6 +9,8 @@ const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
 const LATITUDE_DELTA = 0.04;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LONGITUDE = 79.9729445;
+const LATITUDE = 6.9146775;
 
 const GoogleMap = ({ navigation }) => {
   
@@ -43,34 +45,34 @@ const GoogleMap = ({ navigation }) => {
         <View style={styles.container}>
            <MapView style={StyleSheet.absoluteFill}
                   initialRegion={{
-                    latitude: 6.9146775,
-                    longitude: 79.9729445,
+                    latitude: LATITUDE,
+                    longitude: LONGITUDE,
                     latitudeDelta: LATITUDE_DELTA,
                     longitudeDelta: LONGITUDE_DELTA
                   }}
                   provider="google"
             >
               <Marker coordinate={{ 
-                    latitude: 6.9146775,
-                    longitude: 79.9729445}} >
+                    latitude: LATITUDE,
+                    longitude: LONGITUDE}} >
 
                     <Callout>
                       <Text>I'm here</Text>
                     </Callout>
               </Marker>
               <Circle center={{ 
-                    latitude: 6.9146775,
-                    longitude: 79.9729445}} radius={1000} /> 
+                    latitude: LATITUDE,
+                    longitude: LONGITUDE}} radius={1000} /> 
             </MapView>
-         <View style={styles.bottomCard}>
+         {/* <View style={styles.bottomCard}> */}
                 {/* <Text>Where are you going..?</Text> */}
-                <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
+                {/* <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
                 <AntDesign name="left" size={20} style={styles.back_btn}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.inpuStyle}>                  
                     <Text style={styles.data}>My Current location</Text>
-                </TouchableOpacity>
-            </View>
+                </TouchableOpacity> */}
+            {/* </View> */}
         </View>
         // </SafeAreaView>
     );
